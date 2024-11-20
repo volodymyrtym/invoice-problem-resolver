@@ -1,0 +1,15 @@
+###>>> IntelliJ IDEA User-specific stuff ###
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+.idea/phpspec.xml
+.idea/php-test-framework.xml
+.idea/codeception.xml
+.idea/remote-mappings.xml
+###<<<IntelliJ IDEA User-specific stuff ###
+
+/.env.local
+/docker/db
+/docker/logs

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice Problem Resolver</title>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.1.0/build/pure-min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            max-width: 40px;
+            margin-right: 10px;
+        }
+
+        .logo span {
+            font-size: 18px;
+            font-weight: bold;
+            color: #228b22;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #228b22;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            display: flex;
+            flex-grow: 1;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+
+        .combined-container {
+            display: flex;
+            flex-direction: column;
+            max-width: 700px;
+            width: 100%;
+            background-color: #ffffff;
+            border: 1px solid #d4d4d4;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .info-container {
+            padding: 20px;
+            border-bottom: 1px solid #d4d4d4;
+        }
+
+        .info-container h2 {
+            margin-bottom: 10px;
+            color: #228b22;
+        }
+
+        .info-container ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-container ul li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .info-container ul li:before {
+            content: "✔";
+            color: #228b22;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .login-container {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .login-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .login-row input {
+            flex: 1;
+            min-width: 150px;
+            padding: 8px;
+            border: 1px solid #d4d4d4;
+            border-radius: 4px;
+        }
+
+        .pure-button-primary {
+            background-color: #ff7f50; /* помаранчевий */
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 20px;
+        }
+
+        .pure-button-primary:hover {
+            background-color: #ff6347; /* насичений помаранчевий */
+        }
+
+        .divider {
+            margin: 1em 0 0 0;
+            font-size: 16px;
+            font-weight: bold;
+            color: #777;
+            text-align: center;
+        }
+
+        .register-link {
+            display: block;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .pure-button-secondary {
+            background-color: #f0ad4e; /* помаранчевий */
+            color: white;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .pure-button-secondary:hover {
+            background-color: #ec971f;
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .forgot-password a {
+            color: #228b22;
+            text-decoration: none;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px 20px;
+            background-color: #ffffff;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: auto;
+        }
+
+        footer p {
+            font-size: 14px;
+            color: #777;
+        }
+
+        @media (max-width: 600px) {
+            .login-row {
+                flex-direction: column;
+            }
+
+            .login-row input, 
+            .pure-button-primary {
+                width: 100%;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="path-to-logo.png" alt="Logo">
+            <span>Invoice Problem Resolver</span>
+        </div>
+        <nav class="nav-links">
+            <a href="#contact">Contact</a>
+            <a href="#pricing">Pricing</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="combined-container">
+            <div class="info-container">
+                <h2>Why Use Invoice Problem Resolver?</h2>
+                <ul>
+                    <li>Track your working hours and tasks.</li>
+                    <li>Log your sick days and vacations.</li>
+                    <li>Stay organized with detailed records.</li>
+                    <li>Never forget where your time went.</li>
+                </ul>
+            </div>
+            <div class="login-container">
+                <h2 class="login-header">Login</h2>
+                <div class="login-row">
+                    <input type="email" placeholder="Email" required>
+                    <input type="password" placeholder="Password" required>
+                    <button class="pure-button pure-button-primary">Log In</button>
+                </div>
+                <div class="divider">OR</div>
+                <div class="register-link">
+                    <a href="#" class="pure-button pure-button-secondary">Register</a>
+                </div>
+                <div class="forgot-password">
+                    <a href="#">Forgot your password?</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Invoice Problem Resolver. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
