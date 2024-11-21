@@ -117,6 +117,9 @@
       <path value="$PROJECT_DIR$/backend/vendor/symfony/polyfill-uuid" />
       <path value="$PROJECT_DIR$/backend/vendor/symfony/expression-language" />
       <path value="$PROJECT_DIR$/backend/vendor/symfony/validator" />
+      <path value="$PROJECT_DIR$/backend/vendor/monolog/monolog" />
+      <path value="$PROJECT_DIR$/backend/vendor/symfony/monolog-bundle" />
+      <path value="$PROJECT_DIR$/backend/vendor/symfony/monolog-bridge" />
     </include_path>
   </component>
   <component name="PhpInterpreters">
@@ -184,6 +187,15 @@
         </phpinfo>
       </interpreter>
     </phpInfoCache>
+  </component>
+  <component name="PhpProjectServersManager">
+    <servers>
+      <server host="api.invoice-problem-resolver.loc" id="4c0cb75e-72a9-4756-9283-f6fc91458e31" name="ipr" use_path_mappings="true">
+        <path_mappings>
+          <mapping local-root="$PROJECT_DIR$/backend" remote-root="/var/www/backend" />
+        </path_mappings>
+      </server>
+    </servers>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.3" />
   <component name="PhpStanOptionsConfiguration">

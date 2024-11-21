@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Authentication;
+namespace App\Authentication\Service;
 
+use App\Authentication\Storage\TokenHashStorage;
 use App\User\UseCase\Login\UserAuthenticator;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

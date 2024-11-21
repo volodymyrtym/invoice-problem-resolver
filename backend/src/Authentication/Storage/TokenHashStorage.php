@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Authentication;
+namespace App\Authentication\Storage;
 
 interface TokenHashStorage
 {

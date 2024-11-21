@@ -21,7 +21,7 @@ RUN docker-php-ext-install \
     pdo_mysql \
     zip
 
-WORKDIR /var/www/app
+WORKDIR /var/www/backend
 
 #> php ini
 COPY php.ini /usr/local/etc/php/conf.d/custom.ini

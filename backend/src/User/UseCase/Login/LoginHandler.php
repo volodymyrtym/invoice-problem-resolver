@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\User\UseCase\Login;
 
 use App\Common\Exception\InvalidInputException;
@@ -17,7 +19,7 @@ final readonly class LoginHandler
     /**
      * @throws InvalidInputException
      */
-    public function handler(string $email, string $password): LoginResponse
+    public function handler(string $email, string $password): LoginResult
     {
         $user = $this->repository->findByEmail($email);
         if (!$user) {
@@ -32,6 +34,6 @@ final readonly class LoginHandler
         $authToken = $this->authenticator->allowAuthenticateForUser($user->getId()->toString());
         $this->repository->save($user);
 
-        return new LoginResponse(userId: $user->getId()->toString(), authToken: $authToken);
+        return new LoginResult(userId: $user->getId()->toString(), authToken: $authToken);
     }
 }
