@@ -39,7 +39,7 @@ final class TokenAuthenticator extends AbstractAuthenticator implements UserAuth
         }
 
         $hashedTokenFromHeader = hash_hmac('sha256', $authToken, $this->secretSolt);
-        $userIdentifier = $this->tokenHashStorage->find($hashedTokenFromHeader);
+        $userIdentifier = $this->tokenHashStorage->findUserId($hashedTokenFromHeader);
         if (is_null($userIdentifier)) {
             throw new CustomUserMessageAuthenticationException('Wrong API token provided');
         }

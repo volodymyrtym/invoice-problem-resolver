@@ -23,10 +23,10 @@ final readonly class LoginHandler
     {
         $user = $this->repository->findByEmail($email);
         if (!$user) {
-            throw new InvalidInputException('');
+            throw new InvalidInputException('No such user');
         }
 
-        if (!password_verify($password, $user->getPassword())) {
+        if (!password_verify(password: $password, hash: $user->getPassword()->value)) {
             throw new InvalidInputException('Wrong password');
         }
 

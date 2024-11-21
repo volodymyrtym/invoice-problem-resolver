@@ -7,7 +7,7 @@ services:
     volumes:
       - ./docker/nginx/:/etc/nginx/conf.d/
       - ./docker/logs/nginx/:/var/log/nginx/
-      - ./backend/public/:/var/www/backend/public/
+      - ./backend/public/:/var/www/backend/public/:cached
     tty: true
     networks:
       - ipr
@@ -31,7 +31,7 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
-      - ./backend/:/var/www/backend/
+      - ./backend/:/var/www/backend/:cached
     networks:
       - ipr
     tty: true

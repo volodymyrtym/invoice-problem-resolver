@@ -6,10 +6,10 @@ namespace App\User\ValueObject;
 
 use Webmozart\Assert\Assert;
 
-final class UserEmail
+class PasswordHash
 {
     public function __construct(public string $value)
     {
-        Assert::lengthBetween($this->value, 4, 320);
+        Assert::length($this->value, 60);
     }
 }

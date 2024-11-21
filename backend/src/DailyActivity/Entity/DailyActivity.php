@@ -7,16 +7,17 @@ namespace App\DailyActivity\Entity;
 use App\DailyActivity\Enum\ActivityEnum;
 use App\DailyActivity\ValueObject\DailyActivityDescription;
 use App\DailyActivity\ValueObject\DailyActivityId;
-use App\User\ValueObject\UserId;
+use App\UserContract\ValueObject\UserId;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
-#[ORM\Index(name: 'user_idx', columns: ['user'])]
-#[ORM\Index(name: 'user_date_idx', columns: ['user', 'from', 'to'])]
+#[ORM\Table(name: 'daily_activity_daily_activities')]
+#[ORM\Index(name: 'user_idx', columns: ['user_id'])]
+#[ORM\Index(name: 'user_date_idx', columns: ['user_id', 'from', 'to'])]
 class DailyActivity
 {
     #[ORM\Id]
-    #[ORM\Column]
+    #[ORM\Column(type: "string", unique: true)]
     private string $id;
 
     #[ORM\Column(length: 36, nullable: false)]

@@ -7,7 +7,7 @@ namespace App\DailyActivity\Repository;
 use App\DailyActivity\Entity\DailyActivity;
 use Doctrine\ORM\EntityManagerInterface;
 
-class PostgresDailyActivityRepository implements DailyActivityRepository
+class PostgrDailyActivityRepository implements DailyActivityRepository
 {
     private EntityManagerInterface $entityManager;
 

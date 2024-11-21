@@ -10,7 +10,7 @@ use App\DailyActivity\Enum\ActivityEnum;
 use App\DailyActivity\Repository\DailyActivityRepository;
 use App\DailyActivity\ValueObject\DailyActivityDescription;
 use App\DailyActivity\ValueObject\DailyActivityId;
-use App\User\ValueObject\UserId;
+use App\UserContract\ValueObject\UserId;
 
 final readonly class AddHandler
 {

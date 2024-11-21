@@ -39,6 +39,6 @@ symfony-console: ## backend. run symfony console
 	@docker-compose exec php php bin/console $(filter-out $@,$(MAKECMDGOALS))
 
 composer: ## backend. run composer
-	docker-compose exec php composer $(filter-out $@,$(MAKECMDGOALS))
+	@docker-compose exec php composer $(filter-out $@,$(MAKECMDGOALS))
 
 # <<< backend

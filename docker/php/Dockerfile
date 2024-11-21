@@ -12,13 +12,13 @@ RUN apt-get update &&\
     git\
     bash\
     libicu-dev\
-    zip libzip-dev \
+    zip libzip-dev libpq-dev\
     autoconf dpkg-dev dpkg file g++ gcc libc-dev make pkgconf re2c
 
 RUN docker-php-ext-install \
     sockets\
     intl\
-    pdo_mysql \
+    pdo_pgsql \
     zip
 
 WORKDIR /var/www/backend

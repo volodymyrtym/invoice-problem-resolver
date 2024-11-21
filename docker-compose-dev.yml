@@ -13,6 +13,8 @@ services:
        - ./docker/db/data:/var/lib/postgresql/data:rw
     ports:
       - "5432"
+    networks:
+      - ipr
 #volumes:
   ###> doctrine/doctrine-bundle ###
   #database_data:
