@@ -7,14 +7,14 @@ namespace App\DailyActivity\UseCase\Add;
 use App\Common\Exception\InvalidInputException;
 use App\DailyActivity\Entity\DailyActivity;
 use App\DailyActivity\Enum\ActivityEnum;
-use App\DailyActivity\Repository\DailyActivityRepository;
+use App\DailyActivity\Repository\DailyActivityRepositoryInterface;
 use App\DailyActivity\ValueObject\DailyActivityDescription;
 use App\DailyActivity\ValueObject\DailyActivityId;
 use App\UserContract\ValueObject\UserId;
 
 final readonly class AddHandler
 {
-    public function __construct(private DailyActivityRepository $repository) {}
+    public function __construct(private DailyActivityRepositoryInterface $repository) {}
 
     /**
      * @throws InvalidInputException

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\User\Service;
+namespace App\User\Service\Password;
 
-use Symfony\Component\PasswordHasher\Hasher\NativePasswordHasher;
+use Symfony\Component\PasswordHasher\Hasher\NativePasswordHasher as VendorHasher;
 
-class SymfonyNativePasswordHasher implements PasswordHasher
+final readonly class NativePasswordHasher implements PasswordHasherInterface
 {
     public function verify(string $hashedPassword, #[\SensitiveParameter] string $plainPassword): bool
     {
@@ -18,9 +18,9 @@ class SymfonyNativePasswordHasher implements PasswordHasher
         return $this->getHasher()->hash($plainPassword);
     }
 
-    private function getHasher(): NativePasswordHasher
+    private function getHasher(): VendorHasher
     {
-        return new NativePasswordHasher(
+        return new VendorHasher(
             cost: 13,
         );
     }

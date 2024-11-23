@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace App\Authentication\Service;
 
-use App\Authentication\Storage\TokenHashStorage;
-use App\User\UseCase\Login\UserAuthenticator;
+use App\Authentication\Storage\TokenHashStorageInterface;
+use App\AuthenticationContract\AuthenticatorInterface;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,9 +18,13 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
 
-final class TokenAuthenticator extends AbstractAuthenticator implements UserAuthenticator
+final class TokenAuthenticator extends AbstractAuthenticator implements AuthenticatorInterface
 {
-    public function __construct(private string $secretSolt, private TokenHashStorage $tokenHashStorage) {}
+    public function __construct(
+        private string $secretSolt,
+        private TokenHashStorageInterface $tokenHashStorage,
+        private Security $security,
+    ) {}
 
     /**
      * Called on every request to decide if this authenticator should be
@@ -73,5 +78,17 @@ final class TokenAuthenticator extends AbstractAuthenticator implements UserAuth
         $this->tokenHashStorage->save(hash: $hashedAuthToken, userId: $userId, ttlSeconds: 3600 * 8);
 
         return $authToken;
+    }
+
+    #[\Override] public function dennyUnlessUserEquals(string $userId): void
+    {
+        $authenticatedUser = $this->security->getUser();
+        if (is_null($authenticatedUser)) {
+            throw new AuthenticationException('Not authenticated user');
+        }
+
+        if ($authenticatedUser->getUserIdentifier() !== $userId) {
+            throw new AuthenticationException('User auth missmatch');
+        }
     }
 }

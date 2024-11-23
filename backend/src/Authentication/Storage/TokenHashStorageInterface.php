@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Authentication\Storage;
 
-interface TokenHashStorage
+interface TokenHashStorageInterface
 {
     public function save(string $hash, string $userId, int $ttlSeconds): void;
 

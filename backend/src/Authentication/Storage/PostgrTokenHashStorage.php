@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\Authentication\Storage;
 
-use App\Common\Service\Clock;
 use Doctrine\ORM\EntityManagerInterface;
+use Psr\Clock\ClockInterface;
 
 /**
  * todo change to redis
  */
-class PostgrTokenHashStorage implements TokenHashStorage
+class PostgrTokenHashStorage implements TokenHashStorageInterface
 {
-    public function __construct(private EntityManagerInterface $entityManager, private Clock $clock) {}
+    public function __construct(private EntityManagerInterface $entityManager, private ClockInterface $clock) {}
 
     public function save(string $hash, string $userId, int $ttlSeconds): void
     {

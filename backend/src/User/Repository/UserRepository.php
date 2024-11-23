@@ -5,13 +5,25 @@ declare(strict_types=1);
 namespace App\User\Repository;
 
 use App\User\Entity\User;
+use App\User\ValueObject\UserEmail;
 use App\UserContract\ValueObject\UserId;
+use Doctrine\ORM\EntityManagerInterface;
 
-interface UserRepository
+final readonly class UserRepository implements UserRepositoryInterface
 {
-    public function get(UserId $userId): User;
 
-    public function findByEmail(string $email): ?User;
+    public function __construct(private EntityManagerInterface $entityManager) {}
 
-    public function save(User $user): void;
+    public function findByEmail(UserEmail $email): ?User {}
+
+    public function save(User $user): void
+    {
+        $this->entityManager->persist($user);
+        $this->entityManager->flush();
+    }
+
+    public function get(UserId $userId): User
+    {
+        return $this->entityManager->find(User::class, $userId->toString());
+    }
 }

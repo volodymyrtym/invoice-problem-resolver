@@ -29,11 +29,12 @@ class User
     #[ORM\Column(type: "string", length: 60,)]
     private string $password;
 
-    public function __construct(UserId $id, UserEmail $email, PasswordHash $password)
+    public function __construct(UserId $id, UserEmail $email, PasswordHash $password, \DateTimeImmutable $createdAt)
     {
         $this->id = $id->toString();
         $this->email = $email->value;
         $this->password = $password->value;
+        $this->createdAt = $createdAt;
     }
 
     public function getId(): UserId

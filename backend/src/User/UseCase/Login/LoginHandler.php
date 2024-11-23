@@ -4,16 +4,18 @@ declare(strict_types=1);
 
 namespace App\User\UseCase\Login;
 
+use App\AuthenticationContract\AuthenticatorInterface;
 use App\Common\Exception\InvalidInputException;
-use App\Common\Service\Clock;
-use App\User\Repository\UserRepository;
+use App\User\Repository\UserRepositoryInterface;
+use App\User\ValueObject\UserEmail;
+use Psr\Clock\ClockInterface;
 
 final readonly class LoginHandler
 {
     public function __construct(
-        private UserRepository $repository,
-        private Clock $clock,
-        private UserAuthenticator $authenticator,
+        private UserRepositoryInterface $repository,
+        private ClockInterface $clock,
+        private AuthenticatorInterface $authenticator,
     ) {}
 
     /**
@@ -21,7 +23,7 @@ final readonly class LoginHandler
      */
     public function handler(string $email, string $password): LoginResult
     {
-        $user = $this->repository->findByEmail($email);
+        $user = $this->repository->findByEmail(new UserEmail($email));
         if (!$user) {
             throw new InvalidInputException('No such user');
         }

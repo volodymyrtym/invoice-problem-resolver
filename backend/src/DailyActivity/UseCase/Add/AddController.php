@@ -8,14 +8,14 @@ use ApiPlatform\Metadata\Operation;
 use ApiPlatform\State\ProcessorInterface;
 use App\Authorization\Enum\PermissionDomainsEnum;
 use App\AuthorizationContract\Enum\DailyActivityPermission;
-use App\AuthorizationContract\PermissionGranter;
+use App\AuthorizationContract\PermissionGranterInterface;
 use Webmozart\Assert\Assert;
 
 final readonly class AddController implements ProcessorInterface
 {
     public function __construct(
         private AddHandler $handler,
-        private PermissionGranter $permissionGranter,
+        private PermissionGranterInterface $permissionGranter,
     ) {}
 
     public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): void

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\User\Service;
+namespace App\User\Service\Password;
 
-interface PasswordHasher
+interface PasswordHasherInterface
 {
     public function verify(string $hashedPassword, #[\SensitiveParameter] string $plainPassword): bool;
 

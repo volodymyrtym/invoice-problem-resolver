@@ -6,7 +6,7 @@ namespace App\AuthorizationContract;
 
 use App\Authorization\Enum\PermissionDomainsEnum;
 
-interface PermissionGranter
+interface PermissionGranterInterface
 {
     public function dennyUnlessGranted(string $permission, string $userId, string|null $subject = null): void;
 
