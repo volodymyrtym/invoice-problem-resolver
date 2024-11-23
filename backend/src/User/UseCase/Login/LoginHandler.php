@@ -21,14 +21,14 @@ final readonly class LoginHandler
     /**
      * @throws InvalidInputException
      */
-    public function handler(string $email, string $password): LoginResult
+    public function handle(LoginCommand $command): LoginResult
     {
-        $user = $this->repository->findByEmail(new UserEmail($email));
+        $user = $this->repository->findByEmail(new UserEmail($command->email));
         if (!$user) {
             throw new InvalidInputException('No such user');
         }
 
-        if (!password_verify(password: $password, hash: $user->getPassword()->value)) {
+        if (!password_verify(password: $command->password, hash: $user->getPassword()->value)) {
             throw new InvalidInputException('Wrong password');
         }
 

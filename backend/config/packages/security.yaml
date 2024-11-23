@@ -4,7 +4,7 @@ security:
             pattern: ^/_(profiler|wdt)
             security: false
         public:
-            pattern: ^/(api-platform|login)
+            pattern: ^/(api-platform|users/login)
             stateless: true
             security: false
         main:

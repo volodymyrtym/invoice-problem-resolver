@@ -1,30 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\User\UseCase\Login;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use ApiPlatform\Metadata\Operation;
+use ApiPlatform\State\ProcessorInterface;
+use Webmozart\Assert\Assert;
 
-class LoginController extends AbstractController
+final readonly class LoginController implements ProcessorInterface
 {
+    public function __construct(
+        private LoginHandler $handler,
+    ) {}
 
-    public function __construct(private LoginHandler $loginHandler) {
-
-    }
-
-    #[Route('/login')]
-    public function index(Request $request): Response
+    public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = [])
     {
-        $email = $request->get('email', '');
-        $password = $request->get('password', '');
-
-        $this->loginHandler->handler($email, $password);
-
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/ApiLoginController.php',
-        ]);
+        Assert::isInstanceOf($data, LoginCommand::class);
+        /** @var LoginCommand $data */
+        return $this->handler->handle($data);
     }
 }

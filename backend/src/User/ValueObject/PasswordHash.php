@@ -6,7 +6,7 @@ namespace App\User\ValueObject;
 
 use Webmozart\Assert\Assert;
 
-class PasswordHash
+final readonly class PasswordHash
 {
     public function __construct(public string $value)
     {

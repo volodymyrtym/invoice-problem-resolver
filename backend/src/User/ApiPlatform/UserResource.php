@@ -2,23 +2,33 @@
 
 declare(strict_types=1);
 
-namespace App\DailyActivity\ApiPlatform;
+namespace App\User\ApiPlatform;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Post;
-use App\DailyActivity\UseCase\Add\AddCommand;
-use App\DailyActivity\UseCase\Add\AddController;
+use App\User\UseCase\CreateUser\CreateCommand;
+use App\User\UseCase\CreateUser\CreateController;
+use App\User\UseCase\Login\LoginCommand;
+use App\User\UseCase\Login\LoginController;
+use App\User\UseCase\Login\LoginResult;
 
 #[ApiResource(
-    uriTemplate: '/daily_activities',
-    shortName: 'DailyActivity',
+    uriTemplate: '/users',
     operations: [
         new Post(
             status: 201,
-            description: 'Creates activity',
-            input: AddCommand::class,
+            description: 'Creates user',
+            input: CreateCommand::class,
             output: null,
-            processor: AddController::class,
+            processor: CreateController::class,
+        ),
+        new Post(
+            uriTemplate: '/users/login',
+            status: 200,
+            description: 'Login user',
+            input: LoginCommand::class,
+            output: LoginResult::class,
+            processor: LoginController::class,
         ),
     ],
 )]

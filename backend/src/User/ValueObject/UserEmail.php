@@ -6,7 +6,7 @@ namespace App\User\ValueObject;
 
 use Webmozart\Assert\Assert;
 
-final class UserEmail
+final readonly class UserEmail
 {
     public function __construct(public string $value)
     {

@@ -14,7 +14,10 @@ final readonly class UserRepository implements UserRepositoryInterface
 
     public function __construct(private EntityManagerInterface $entityManager) {}
 
-    public function findByEmail(UserEmail $email): ?User {}
+    public function findByEmail(UserEmail $email): ?User
+    {
+        return $this->entityManager->getRepository(User::class)->findOneBy(['email' => $email->value]);
+    }
 
     public function save(User $user): void
     {

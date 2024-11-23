@@ -11,7 +11,7 @@ help:
 	@grep -E '^(symfony-console|composer):.*?## .*$$' Makefile | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "  %-15s %s\n", $$1, $$2}'
 
 up-dev: down compare-env ## up app containers for dev env
-	@docker compose -f docker-compose.yml -f docker-compose-dev.yml up -d
+	@docker compose up -d
 	@docker-compose exec php composer install
 	@echo "Environment is ready for development!"
 
@@ -39,6 +39,6 @@ symfony-console: ## backend. run symfony console
 	@docker-compose exec php php bin/console $(filter-out $@,$(MAKECMDGOALS))
 
 composer: ## backend. run composer
-	@docker-compose exec php composer $(filter-out $@,$(MAKECMDGOALS))
+	@docker-compose exec composer $(filter-out $@,$(MAKECMDGOALS))
 
 # <<< backend
