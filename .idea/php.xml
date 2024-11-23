@@ -120,6 +120,7 @@
       <path value="$PROJECT_DIR$/backend/vendor/monolog/monolog" />
       <path value="$PROJECT_DIR$/backend/vendor/symfony/monolog-bundle" />
       <path value="$PROJECT_DIR$/backend/vendor/symfony/monolog-bridge" />
+      <path value="$PROJECT_DIR$/backend/vendor/symfony/web-profiler-bundle" />
     </include_path>
   </component>
   <component name="PhpInterpreters">
