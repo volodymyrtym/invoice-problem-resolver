@@ -6,19 +6,19 @@ namespace App\DailyActivity\ApiPlatform;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Post;
-use App\DailyActivity\UseCase\Add\AddCommand;
-use App\DailyActivity\UseCase\Add\AddController;
+use App\DailyActivity\UseCase\Create\CreateCommand;
+use App\DailyActivity\UseCase\Create\CreateController;
 
 #[ApiResource(
-    uriTemplate: '/daily_activities',
+    uriTemplate: '/daily-activities',
     shortName: 'DailyActivity',
     operations: [
         new Post(
             status: 201,
             description: 'Creates activity',
-            input: AddCommand::class,
+            input: CreateCommand::class,
             output: null,
-            processor: AddController::class,
+            processor: CreateController::class,
         ),
     ],
 )]

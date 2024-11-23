@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\DailyActivity\UseCase\Add;
+namespace App\DailyActivity\UseCase\Create;
 
 use App\Common\Exception\InvalidInputException;
 use App\DailyActivity\Entity\DailyActivity;
@@ -12,14 +12,14 @@ use App\DailyActivity\ValueObject\DailyActivityDescription;
 use App\DailyActivity\ValueObject\DailyActivityId;
 use App\UserContract\ValueObject\UserId;
 
-final readonly class AddHandler
+final readonly class CreateHandler
 {
     public function __construct(private DailyActivityRepositoryInterface $repository) {}
 
     /**
      * @throws InvalidInputException
      */
-    public function handle(AddCommand $command): string
+    public function handle(CreateCommand $command): string
     {
         $type = ActivityEnum::tryFrom($command->type) ?? throw InvalidInputException::forField($command->type);
         $id = DailyActivityId::create();
