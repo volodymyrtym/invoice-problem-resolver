@@ -8,29 +8,45 @@ use App\Common\Exception\InvalidInputException;
 use App\DailyActivity\Entity\DailyActivity;
 use App\DailyActivity\Enum\ActivityEnum;
 use App\DailyActivity\Repository\DailyActivityRepositoryInterface;
+use App\DailyActivity\ValueObject\DailyActivityDateRange;
 use App\DailyActivity\ValueObject\DailyActivityDescription;
 use App\DailyActivity\ValueObject\DailyActivityId;
 use App\UserContract\ValueObject\UserId;
+use Psr\Clock\ClockInterface;
 
 final readonly class CreateHandler
 {
-    public function __construct(private DailyActivityRepositoryInterface $repository) {}
+    public function __construct(
+        private int $maxPerDay,
+        private DailyActivityRepositoryInterface $repository,
+        private ClockInterface $clock,
+    ) {}
 
     /**
      * @throws InvalidInputException
      */
     public function handle(CreateCommand $command): string
     {
-        $type = ActivityEnum::tryFrom($command->type) ?? throw InvalidInputException::forField($command->type);
+        $type = ActivityEnum::tryFrom($command->type) ?? throw InvalidInputException::forField('type', $command->type);
         $id = DailyActivityId::create();
+        $userId = UserId::fromString($command->userId);
+        $range = new DailyActivityDateRange(
+            start: $command->start,
+            end: $command->end,
+        );
+
+        if ($this->repository->countToday($userId) > $this->maxPerDay) {
+            throw new InvalidInputException('Maximum allowed activities per day reached. Max: ' . $this->maxPerDay);
+        }
+
         $this->repository->save(
             new DailyActivity(
                 id: $id,
                 userId: UserId::fromString($command->userId),
                 type: $type,
-                from: $command->from,
-                to: $command->to,
+                range: $range,
                 description: new DailyActivityDescription($command->description),
+                createdAt: $this->clock->now(),
             ),
         );
 

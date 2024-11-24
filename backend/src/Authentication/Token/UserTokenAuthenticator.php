@@ -2,10 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Authentication\Service;
+namespace App\Authentication\Token;
 
-use App\Authentication\Storage\TokenHashStorageInterface;
-use App\AuthenticationContract\AuthenticatorInterface;
+use App\AuthenticationContract\UserAuthenticatorInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +17,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\Authenticator\Passport\SelfValidatingPassport;
 
-final class TokenAuthenticator extends AbstractAuthenticator implements AuthenticatorInterface
+final class UserTokenAuthenticator extends AbstractAuthenticator implements UserAuthenticatorInterface
 {
     public function __construct(
         private string $secretSolt,
@@ -71,7 +70,7 @@ final class TokenAuthenticator extends AbstractAuthenticator implements Authenti
         return new JsonResponse($data, Response::HTTP_UNAUTHORIZED);
     }
 
-    public function allowAuthenticateForUser(string $userId): string
+    public function allowAuthenticate(string $userId): string
     {
         $authToken = bin2hex(random_bytes(32));
         $hashedAuthToken = hash_hmac('sha256', $authToken, $this->secretSolt);
@@ -80,7 +79,7 @@ final class TokenAuthenticator extends AbstractAuthenticator implements Authenti
         return $authToken;
     }
 
-    #[\Override] public function dennyUnlessUserEquals(string $userId): void
+    public function dennyUnlessUserEquals(string $userId): void
     {
         $authenticatedUser = $this->security->getUser();
         if (is_null($authenticatedUser)) {

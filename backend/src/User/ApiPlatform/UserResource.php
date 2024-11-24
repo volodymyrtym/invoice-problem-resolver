@@ -16,6 +16,7 @@ use App\User\UseCase\Login\LoginResult;
     uriTemplate: '/users',
     operations: [
         new Post(
+            uriTemplate: '/users/register',
             status: 201,
             description: 'Creates user',
             input: CreateCommand::class,

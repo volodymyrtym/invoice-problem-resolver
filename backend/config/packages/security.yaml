@@ -1,20 +1,22 @@
 security:
+    access_decision_manager:
+        strategy: unanimous
+    providers:
+        app_user_provider:
+            id: App\Authentication\User\SecurityUserProvider
     firewalls:
         dev:
-            pattern: ^/_(profiler|wdt)
+            pattern: ^/(_(profiler|wdt)|api-platform)
             security: false
         public:
-            pattern: ^/(api-platform|users/login)
+            pattern: ^/(users/login|users/register)
             stateless: true
             security: false
         main:
             stateless: true
             custom_authenticators:
-                - App\Authentication\Service\TokenAuthenticator
+                - App\AuthenticationContract\UserAuthenticatorInterface
     access_control:
-        - { path: ^/_(profiler|wdt), roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api-platform, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
 
 when@test:

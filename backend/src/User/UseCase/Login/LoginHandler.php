@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\User\UseCase\Login;
 
-use App\AuthenticationContract\AuthenticatorInterface;
+use App\AuthenticationContract\UserAuthenticatorInterface;
 use App\Common\Exception\InvalidInputException;
 use App\User\Repository\UserRepositoryInterface;
 use App\User\ValueObject\UserEmail;
@@ -15,7 +15,7 @@ final readonly class LoginHandler
     public function __construct(
         private UserRepositoryInterface $repository,
         private ClockInterface $clock,
-        private AuthenticatorInterface $authenticator,
+        private UserAuthenticatorInterface $authenticator,
     ) {}
 
     /**
@@ -33,7 +33,7 @@ final readonly class LoginHandler
         }
 
         $user->logged($this->clock->now());
-        $authToken = $this->authenticator->allowAuthenticateForUser($user->getId()->toString());
+        $authToken = $this->authenticator->allowAuthenticate($user->getId()->toString());
         $this->repository->save($user);
 
         return new LoginResult(userId: $user->getId()->toString(), authToken: $authToken);
