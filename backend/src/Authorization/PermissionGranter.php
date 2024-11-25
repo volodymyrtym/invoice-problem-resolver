@@ -19,7 +19,7 @@ final readonly class PermissionGranter implements PermissionGranterInterface
 
     public function dennyUnlessGranted(string $permission, string $userId, string|null $subject = null): void
     {
-        $this->authenticator->dennyUnlessUserEquals($userId);
+        $this->authenticator->dennyUnlessTokenUserEquals($userId);
 
         if (!$this->authorizationChecker->isGranted(RoleEnum::User->value)) { //voter concept if needed
             throw new AccessDeniedHttpException();

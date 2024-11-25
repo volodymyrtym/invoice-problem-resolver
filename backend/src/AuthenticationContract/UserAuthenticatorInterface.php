@@ -8,5 +8,5 @@ interface UserAuthenticatorInterface
 {
     public function allowAuthenticate(string $userId): string;
 
-    public function dennyUnlessUserEquals(string $userId): void;
+    public function dennyUnlessTokenUserEquals(string $userId): void;
 }

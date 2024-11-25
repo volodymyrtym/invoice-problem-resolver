@@ -14,7 +14,7 @@ final readonly class LoginController implements ProcessorInterface
         private LoginHandler $handler,
     ) {}
 
-    public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = [])
+    public function process(mixed $data, Operation $operation, array $uriVariables = [], array $context = []): LoginResult
     {
         Assert::isInstanceOf($data, LoginCommand::class);
         /** @var LoginCommand $data */

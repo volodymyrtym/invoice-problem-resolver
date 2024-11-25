@@ -2,27 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\DailyActivity\Repository;
+namespace App\DailyActivity\UseCase\Create;
 
 use App\DailyActivity\Entity\DailyActivity;
+use App\DailyActivity\Repository\DailyActivityWriteRepository;
 use App\UserContract\ValueObject\UserId;
-use Doctrine\ORM\EntityManagerInterface;
 
-class DailyActivityRepository implements DailyActivityRepositoryInterface
+class DailyActivityCreateRepository extends DailyActivityWriteRepository
 {
-    private EntityManagerInterface $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager)
-    {
-        $this->entityManager = $entityManager;
-    }
-
-    public function save(DailyActivity $entity): void
-    {
-        $this->entityManager->persist($entity);
-        $this->entityManager->flush();
-    }
-
     public function countToday(UserId $userId): int
     {
         $startOfDay = (new \DateTimeImmutable('today'))->setTime(0, 0, 0);
@@ -38,6 +25,6 @@ class DailyActivityRepository implements DailyActivityRepositoryInterface
             ->setParameter('startOfDay', $startOfDay)
             ->setParameter('endOfDay', $endOfDay);
 
-        return (int) $qb->getQuery()->getSingleScalarResult();
+        return (int)$qb->getQuery()->getSingleScalarResult();
     }
 }

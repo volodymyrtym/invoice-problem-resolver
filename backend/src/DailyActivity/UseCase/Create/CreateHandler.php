@@ -7,7 +7,6 @@ namespace App\DailyActivity\UseCase\Create;
 use App\Common\Exception\InvalidInputException;
 use App\DailyActivity\Entity\DailyActivity;
 use App\DailyActivity\Enum\ActivityEnum;
-use App\DailyActivity\Repository\DailyActivityRepositoryInterface;
 use App\DailyActivity\ValueObject\DailyActivityDateRange;
 use App\DailyActivity\ValueObject\DailyActivityDescription;
 use App\DailyActivity\ValueObject\DailyActivityId;
@@ -18,7 +17,7 @@ final readonly class CreateHandler
 {
     public function __construct(
         private int $maxPerDay,
-        private DailyActivityRepositoryInterface $repository,
+        private DailyActivityCreateRepository $repository,
         private ClockInterface $clock,
     ) {}
 

@@ -13,8 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'daily_activity_daily_activities')]
-#[ORM\Index(name: 'user_idx', columns: ['user_id'])]
-#[ORM\Index(name: 'user_date_idx', columns: ['user_id', 'start_at', 'end_at'])]
+#[ORM\Index(name: 'user_start_date_idx', columns: ['user_id', 'start_at'])]
 #[ORM\Index(name: 'user_created_at', columns: ['user_id', 'created_at'])]
 class DailyActivity
 {

@@ -79,7 +79,7 @@ final class UserTokenAuthenticator extends AbstractAuthenticator implements User
         return $authToken;
     }
 
-    public function dennyUnlessUserEquals(string $userId): void
+    public function dennyUnlessTokenUserEquals(string $userId): void
     {
         $authenticatedUser = $this->security->getUser();
         if (is_null($authenticatedUser)) {
