@@ -1,0 +1,164 @@
+@use 'layouts/logged';
+
+main {
+  display: flex;
+  padding: 20px;
+  gap: 20px;
+  flex-grow: 1;
+}
+
+.statistics-container {
+  width: 20%;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.statistics-container h2 {
+  margin-bottom: 14px;
+  color: #228b22;
+}
+
+.divider {
+  border-bottom: 1px solid #d4d4d4;
+  margin: 15px 0;
+}
+
+.activity-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.add-activity-button {
+  align-self: flex-end;
+  padding: 10px 20px;
+  background-color: #ff7f50;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-activity-button:hover {
+  background-color: #ff6347;
+}
+
+.activity-group-header .date {
+  color: #777;
+}
+
+.activity-header {
+  display: grid;
+  grid-template-columns: 1.5fr 0.7fr 4fr 1fr 100px;
+  background-color: #f8f9fa;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 8px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.activity-group {
+  margin-bottom: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.activity-group-header {
+  background-color: #f8f9fa;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+  display: grid;
+  justify-content: space-between;
+  align-items: center;
+  grid-template-columns: 1.5fr 0.7fr 4fr 1fr 100px;
+}
+
+.activity-item {
+  display: grid;
+  grid-template-columns: 1.5fr 0.7fr 4fr 1fr 100px;
+  align-items: center;
+  padding: 10px 15px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.activity-item:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.activity-item span{
+  padding-right: 4px;
+}
+
+.activity-item:hover {
+  background-color: #e0f7fa; /* Світло-блакитний відтінок */
+  transform: translateY(-2px); /* Легке підняття при наведенні */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Більш виразна тінь */
+}
+
+.activity-type {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.activity-type.work {
+  color: #228b22; /* Зелений */
+}
+
+.activity-type.vacation {
+  color: #007bff; /* Синій */
+}
+
+.activity-type.sick-leave {
+  color: #dc3545; /* Червоний */
+}
+
+.actions span {
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.actions span:hover {
+  color: #ff6347; /* Червоний для Delete */
+  transform: scale(1.1); /* Легке збільшення */
+}
+
+.add-small-button:hover {
+  background-color: #76a076;
+}
+
+.add-small-button {
+  background-color: #85bb85;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+@media (max-width: 768px) {
+  .statistics-container,
+  .activity-container {
+    flex: 1 1 100%;
+  }
+
+  .menu-buttons {
+    flex-wrap: wrap;
+  }
+}

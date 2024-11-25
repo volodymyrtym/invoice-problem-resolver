@@ -1,0 +1,123 @@
+{% extends "layouts/logged.twig" %}
+
+{% block title %}Invoice Problem Resolver - time spent reports, time tracking{% endblock %}
+
+{% block content %}
+    <main>
+        <!-- Statistics Section -->
+        <div class="statistics-container">
+            <h2>Statistics</h2>
+            <div class="divider"></div>
+            <h3>This Month</h3>
+            <ul>
+                <li>Worked Hours: <strong>120</strong></li>
+                <li>Vacation Days: <strong>5</strong></li>
+                <li>Sick Leave Days: <strong>2</strong></li>
+            </ul>
+            <div class="divider"></div>
+            <h3>Previous Month</h3>
+            <ul>
+                <li>Worked Hours: <strong>100</strong></li>
+                <li>Vacation Days: <strong>3</strong></li>
+                <li>Sick Leave Days: <strong>1</strong></li>
+            </ul>
+            <div class="divider"></div>
+            <h3>This Year</h3>
+            <ul>
+                <li>Worked Days: <strong>200</strong></li>
+                <li>Vacation Days: <strong>15</strong></li>
+                <li>Sick Leave Days: <strong>5</strong></li>
+            </ul>
+        </div>
+
+        <!-- Activities Section -->
+        <div class="activity-container">
+            <button class="add-activity-button">+ Create Activity</button>
+
+
+            <div class="activity-header">
+                <span>Project</span>
+                <span>Type</span>
+                <span>Description</span>
+                <span>Time</span>
+                <span>Actions</span>
+            </div>
+
+            <!-- Grouped Activities -->
+            <div class="activity-group">
+                <div class="activity-group-header">
+                    <span><button class="pure-button button-xsmall button-success">+ Create</button></span>
+                    <span></span>
+                    <span></span>
+                    <span>Total: 8h</span>
+                    <span class="date">2024-11-02</span>
+                </div>
+                <form class="pure-form">
+                    <div class="activity-item">
+
+                        <span>Project A</span>
+                        <span class="activity-type work">💼</span>
+                        <span><input type="text" class="pure-input-1" value="Created layout"></span>
+                        <span>4h 30m</span>
+                        <div class="actions">
+                            <button class="pure-button button-error button-xsmall">Delete</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="activity-item">
+                    <span>Project B</span>
+                    <span class="activity-type work">💼</span>
+                    <span><input type="text" class="editable-input" value="Developed API"></span>
+                    <span>3h 15m</span>
+                    <div class="actions">
+                        <button class="pure-button button-error button-xsmall">Delete</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-group">
+                <div class="activity-group-header">
+                    <span><button class="pure-button button-xsmall button-success">+ Create</button></span>
+                    <span></span>
+                    <span></span>
+                    <span>Total: 8h</span>
+                    <span class="date">2024-11-02</span>
+                </div>
+                <div class="activity-item">
+                    <span>Project C</span>
+                    <span class="activity-type vacation">🌴</span>
+                    <span><span><input type="text" class="editable-input" value="Recovering from flu"></span></span>
+                    <span>3h</span>
+                    <div class="actions">
+                        <button class="pure-button button-error button-xsmall">Delete</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="activity-group">
+                <div class="activity-group-header">
+                    <span><button class="pure-button button-xsmall button-success">+ Create</button></span>
+                    <span></span>
+                    <span></span>
+                    <span>Total: 8h</span>
+                    <span class="date">2024-11-02</span>
+                </div>
+                <div class="activity-item">
+                    <span>Project B</span>
+                    <span class="activity-type sick-leave">🤒</span>
+                    <span><input type="text" class="editable-input" value="Developed API"></span>
+                    <span>3h 15m</span>
+                    <div class="actions">
+                        <button class="pure-button button-error button-xsmall">Delete</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <button>Previous</button>
+                <button>Next</button>
+            </div>
+        </div>
+    </main>
+{% endblock %}

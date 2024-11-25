@@ -1,0 +1,32 @@
+{% extends "layouts/not-logged.twig" %}
+
+{% block title %}Invoice Problem Resolver - time spent reports, time tracking{% endblock %}
+
+{% block content %}
+    <div class="combined-container">
+        <div class="info-container">
+            <h2>Why Use Invoice Problem Resolver?</h2>
+            <ul>
+                <li>Track your working hours and tasks.</li>
+                <li>Log your sick days and vacations.</li>
+                <li>Stay organized with detailed records.</li>
+                <li>Never forget where your time went.</li>
+            </ul>
+        </div>
+        <div class="login-container">
+            <h2 class="login-header">Login</h2>
+            <div class="login-row">
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button class="pure-button pure-button-primary">Log In</button>
+            </div>
+            <div class="divider">OR</div>
+            <div class="register-link">
+                <a href="#" class="pure-button pure-button-secondary">Register</a>
+            </div>
+            <div class="forgot-password">
+                <a href="#">Forgot your password?</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

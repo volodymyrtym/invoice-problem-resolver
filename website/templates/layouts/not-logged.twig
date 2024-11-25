@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.1.0/build/pure-min.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <title>{% block title %}My Website{% endblock %}</title>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="/img/logo.png" alt="Logo">
+        <span>Invoice Problem Resolver</span>
+    </div>
+    <nav class="nav-links">
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<main>
+    {% block content %}{% endblock %}
+</main>
+
+<footer>
+    <p>&copy; 2024 Invoice Problem Resolver. All rights reserved.</p>
+</footer>
+</body>
+</html>
+

@@ -1,0 +1,149 @@
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ddd;
+  padding: 0 20px;
+}
+nav .pure-menu-heading {
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+nav .pure-menu-heading .logo {
+  display: flex;
+  align-items: center;
+  max-width: 40px;
+  margin-right: 10px;
+}
+nav .pure-menu-heading .logo img {
+  max-width: 40px;
+  margin-right: 10px;
+}
+nav .pure-menu-heading .logo span {
+  font-size: 18px;
+  font-weight: bold;
+  color: #228b22;
+}
+nav .pure-menu-list {
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  list-style: none;
+  padding: 0;
+}
+nav .pure-menu-list .pure-menu-item {
+  list-style: none;
+}
+nav .pure-menu-list .pure-menu-item .pure-menu-link {
+  text-decoration: none;
+  color: #228b22;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 20px 10px;
+  transition: color 0.2s ease;
+}
+nav .pure-menu-list .pure-menu-item .pure-menu-link:hover {
+  color: #76a076;
+}
+@media (max-width: 768px) {
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  nav .pure-menu-heading {
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  nav .pure-menu-list {
+    justify-content: center;
+    gap: 10px;
+  }
+}
+
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.pagination button {
+  padding: 8px 15px;
+  border: none;
+  background-color: #85bb85;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination button:hover {
+  background-color: #76a076;
+}
+
+footer {
+  text-align: center;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: auto;
+}
+
+footer p {
+  font-size: 14px;
+  color: #777;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f7f6;
+  color: #333;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.button-xsmall {
+  font-size: 70%;
+}
+
+.button-small {
+  font-size: 85%;
+}
+
+.button-large {
+  font-size: 110%;
+}
+
+.button-xlarge {
+  font-size: 125%;
+}
+
+.button-success,
+.button-error,
+.button-warning,
+.button-secondary {
+  color: white;
+  border-radius: 4px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.button-success {
+  background-color: #85bb85;
+}
+
+.button-error {
+  background: rgb(202, 60, 60);
+}
+
+.button-warning {
+  background: rgb(223, 117, 20);
+}
+
+.button-secondary {
+  background: rgb(66, 184, 221);
+}
+
+/*# sourceMappingURL=logged.css.map */

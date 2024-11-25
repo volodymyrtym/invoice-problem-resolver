@@ -12,9 +12,15 @@ help:
 
 up: down compare-env ## up app containers for dev env
 	@docker compose up -d
+	$(MAKE) website-node-install
+	$(MAKE) fix-permissions
 	@docker-compose exec php composer install
 	$(MAKE) doctrine-migrate
+	$(MAKE) website-node-dev
 	@echo "Environment is ready for development!"
+
+fix-permissions:
+	@sudo chown -R $(shell id -u):$(shell id -g) ./website
 
 down: ## down app containers
 	@docker compose down
@@ -30,7 +36,9 @@ rebuild: build up ## rebuild app with cache
 rebuild-no-cache: build-no-cache up ## rebuild app with cache
 
 compare-env:
-	@diff <(grep -v '^#' .env | grep -v '^\s*$$' | sort) <(grep -v '^#' .env.local | grep -v '^\s*$$' | sort) || (echo "Environment files differ!" && exit 1)
+	@diff <(grep -v '^#' .env | grep -v '^\s*$$' | cut -d '=' -f 1 | sort) \
+	      <(grep -v '^#' .env.local | grep -v '^\s*$$' | cut -d '=' -f 1 | sort) \
+	|| (echo "Environment files differ!" && exit 1)
 
 setup-env:
 	@test -f .env.local || cp .env .env.local
@@ -53,3 +61,11 @@ doctrine-cache-clear: ## backend. doctrine cache clear
 	@docker compose exec php /bin/bash -c "php bin/console doctrine:cache:clear-query"
 	@docker compose exec php /bin/bash -c "php bin/console doctrine:cache:clear-metadata"
 # <<< backend
+
+# > website
+website-node-install:
+	@docker-compose exec -d website sh -c "npm install"
+
+website-node-dev:
+	@docker-compose exec -d website sh -c "npm run start-dev"
+#< website
