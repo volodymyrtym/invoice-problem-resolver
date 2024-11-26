@@ -1,2 +1,5 @@
 node_modules
 *.css.map
+public/**/*.js.map
+dist
+public/js/stimulus.js

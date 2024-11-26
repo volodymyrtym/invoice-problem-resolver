@@ -67,5 +67,6 @@ website-node-install:
 	@docker-compose exec -d website sh -c "npm install"
 
 website-node-dev:
+	@docker-compose exec -d website sh -c "npm run build"
 	@docker-compose exec -d website sh -c "npm run start-dev"
 #< website

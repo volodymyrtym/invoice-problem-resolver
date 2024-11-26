@@ -4,10 +4,13 @@
   "private": true,
   "scripts": {
     "start": "node dist/bin/www.js",
-    "build": "tsc",
-    "start-dev": "ts-node-dev --respawn --transpile-only src/bin/www.ts"
+    "stop": "kill-port 3000",
+    "restart": "npm run stop && npm run start-dev",
+    "build": "tsc && node stimulus_build.js",
+    "start-dev": "concurrently \"ts-node-dev --respawn --transpile-only --watch templates src/bin/www.ts\" \"node stimulus_build.js --watch\""
   },
   "dependencies": {
+    "@hotwired/stimulus": "^3.2.2",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
@@ -16,8 +19,14 @@
     "twig": "~0.10.3"
   },
   "devDependencies": {
+    "@types/cookie-parser": "^1.4.8",
+    "@types/debug": "^4.1.12",
     "@types/express": "^5.0.0",
+    "@types/morgan": "^1.9.9",
     "@types/node": "^22.9.3",
+    "concurrently": "^9.1.0",
+    "esbuild": "^0.24.0",
+    "kill-port": "^2.0.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.7.2"
   }
