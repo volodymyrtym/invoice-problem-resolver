@@ -1,6 +1,6 @@
-import app from '../app';
-import debugLib from 'debug';
-import http from 'http';
+const app = require('../app.js');
+const debugLib = require('debug');
+const http = require('http');
 
 const debug = debugLib('website:server');
 
@@ -13,14 +13,14 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
-function normalizePort(val: string): number | string | false {
+function normalizePort(val) {
   const port = parseInt(val, 10);
   if (isNaN(port)) return val; // named pipe
   if (port >= 0) return port;  // port number
   return false;
 }
 
-function onError(error: NodeJS.ErrnoException): void {
+function onError(error) {
   if (error.syscall !== 'listen') throw error;
 
   const bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`;
@@ -39,7 +39,7 @@ function onError(error: NodeJS.ErrnoException): void {
   }
 }
 
-function onListening(): void {
+function onListening() {
   const addr = server.address();
   const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr?.port}`;
   debug(`Listening on ${bind}`);

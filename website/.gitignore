@@ -4,4 +4,4 @@ public/**/*.js.map
 dist
 public/js/stimulus.js
 public/css
-.env
+.env.local
