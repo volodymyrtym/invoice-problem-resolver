@@ -3,3 +3,5 @@ node_modules
 public/**/*.js.map
 dist
 public/js/stimulus.js
+public/css
+.env

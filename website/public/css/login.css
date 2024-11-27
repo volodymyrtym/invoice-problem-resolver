@@ -1,4 +1,68 @@
 @charset "UTF-8";
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffffff;
+  border-bottom: 1px solid #ddd;
+  padding: 0 20px;
+}
+nav .pure-menu-heading {
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+nav .pure-menu-heading .logo {
+  display: flex;
+  align-items: center;
+  max-width: 40px;
+  margin-right: 10px;
+}
+nav .pure-menu-heading .logo img {
+  max-width: 40px;
+  margin-right: 10px;
+}
+nav .pure-menu-heading .logo span {
+  font-size: 18px;
+  font-weight: bold;
+  color: #228b22;
+}
+nav .pure-menu-list {
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  list-style: none;
+  padding: 0;
+}
+nav .pure-menu-list .pure-menu-item {
+  list-style: none;
+}
+nav .pure-menu-list .pure-menu-item .pure-menu-link {
+  text-decoration: none;
+  color: #228b22;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 20px 10px;
+  transition: color 0.2s ease;
+}
+nav .pure-menu-list .pure-menu-item .pure-menu-link:hover {
+  color: #76a076;
+}
+@media (max-width: 768px) {
+  nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  nav .pure-menu-heading {
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  nav .pure-menu-list {
+    justify-content: center;
+    gap: 10px;
+  }
+}
+
 footer {
   text-align: center;
   padding: 10px 20px;
@@ -16,45 +80,10 @@ body {
   font-family: Arial, sans-serif;
   background-color: #f4f7f6;
   color: #333;
+  margin: 0;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  margin: 0;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-header .logo {
-  display: flex;
-  align-items: center;
-}
-header .logo img {
-  max-width: 40px;
-  margin-right: 10px;
-}
-header .logo span {
-  font-size: 18px;
-  font-weight: bold;
-  color: #228b22;
-}
-header .nav-links {
-  display: flex;
-  gap: 20px;
-}
-header .nav-links a {
-  text-decoration: none;
-  color: #228b22;
-  font-weight: bold;
-  font-size: 14px;
-}
-header .nav-links a:hover {
-  text-decoration: underline;
 }
 
 main {
@@ -68,7 +97,7 @@ main {
 main .combined-container {
   display: flex;
   flex-direction: column;
-  max-width: 700px;
+  max-width: 640px;
   width: 100%;
   background-color: #ffffff;
   border: 1px solid #d4d4d4;
@@ -92,12 +121,37 @@ main .combined-container .info-container ul li {
   font-size: 16px;
   display: flex;
   align-items: center;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.5s forwards;
 }
 main .combined-container .info-container ul li:before {
   content: "✔";
   color: #228b22;
   font-weight: bold;
   margin-right: 10px;
+}
+main .combined-container .info-container ul li:nth-child(1) {
+  animation-delay: 0.5s;
+}
+main .combined-container .info-container ul li:nth-child(2) {
+  animation-delay: 1s;
+}
+main .combined-container .info-container ul li:nth-child(3) {
+  animation-delay: 1.5s;
+}
+main .combined-container .info-container ul li:nth-child(4) {
+  animation-delay: 2s;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 main .combined-container .login-container {
   padding: 20px;
@@ -171,11 +225,6 @@ main .combined-container .login-container .forgot-password a:hover {
   .login-row input,
   .login-row .pure-button-primary {
     width: 100%;
-  }
-  .nav-links {
-    flex-direction: column;
-    gap: 10px;
-    align-items: flex-start;
   }
 }
 

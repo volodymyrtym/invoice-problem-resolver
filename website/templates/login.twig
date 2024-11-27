@@ -7,19 +7,19 @@
         <div class="info-container">
             <h2>Why Use Invoice Problem Resolver?</h2>
             <ul>
-                <li>Track your working hours and tasks.</li>
-                <li>Log your sick days and vacations.</li>
-                <li>Stay organized with detailed records.</li>
-                <li>Never forget where your time went.</li>
+                <li>Track your working hours and tasks</li>
+                <li>Log your sick days and vacations</li>
+                <li>Stay organized with detailed records</li>
+                <li>Never forget where your time went</li>
             </ul>
         </div>
         <div class="login-container">
             <h2 class="login-header">Login</h2>
             <div class="login-row">
-                <form action="/login">
-                    <input type="email" placeholder="Email" data-login-target="email" required>
-                    <input type="password" placeholder="Password" data-login-target="password" required>
-                    <button class="pure-button pure-button-primary">Log In</button>
+                <form action="/users/login" method="post">
+                    <input type="email" name="email" placeholder="Email" autocomplete="on" required>
+                    <input type="password" name="password" placeholder="Password" autocomplete="on" required>
+                    <button class="pure-button pure-button-primary" type="submit">Log In</button>
                 </form>
             </div>
             <div class="divider">OR</div>

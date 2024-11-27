@@ -6,6 +6,7 @@ namespace App\User\ApiPlatform;
 
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use App\User\UseCase\CreateUser\CreateCommand;
 use App\User\UseCase\CreateUser\CreateController;
 use App\User\UseCase\Login\LoginCommand;
@@ -23,7 +24,7 @@ use App\User\UseCase\Login\LoginResult;
             output: null,
             processor: CreateController::class,
         ),
-        new Post(
+        new Put(
             uriTemplate: '/users/login',
             status: 200,
             description: 'Login user',
