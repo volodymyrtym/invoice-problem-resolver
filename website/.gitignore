@@ -5,3 +5,4 @@ dist
 public/js/stimulus.js
 public/css
 .env.local
+src/var

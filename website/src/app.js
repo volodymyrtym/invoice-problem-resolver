@@ -7,6 +7,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session');
+const sessionFileStore = require('session-file-store')(session);
 const sessionMiddleware = require('./middleware/session-middleware');
 const apiErrorsMiddleware = require('./middleware/api-errors-middleware');
 const registerRoutes = require('./routes/main-router');
@@ -27,7 +28,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(
     session({
-        secret: process.env.SESSION_SECRET,
+        store: new sessionFileStore({
+            path: './sessions',
+        }),
+        secret: process.env.SESSION_SECRET || 'default-secret',
         resave: false,
         saveUninitialized: true,
         cookie: {secure: false},
