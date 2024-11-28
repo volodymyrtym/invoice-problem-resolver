@@ -24,7 +24,6 @@ class ApiClient {
 
             if (status >= 400 && status < 500) {
                 const detail = data.detail || 'Validation failed';
-                console.log(status, detail);
 
                 throw new ApiValidationError(detail, status);
             }
@@ -42,8 +41,8 @@ class ApiClient {
             'Content-Type': 'application/json',
         };
 
-        if (request.authenticationToken && request.authenticationToken.token) {
-            headers['auth-token'] = request.authenticationToken.token;
+        if (request.authenticationToken) {
+            headers['auth-token'] = request.authenticationToken;
         }
 
         return headers;

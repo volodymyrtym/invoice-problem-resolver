@@ -3,14 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Activity List</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
-    <script>
-        window.appConfig = {
-            userId: "12345",
-            userToken: "abcd1234xyz"
-        };
-    </script>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.1.0/build/pure-min.css">
+    {% block styles %}{% endblock %}
+    <title>{% block title %}Invoice Problem Resolver{% endblock %}</title>
+    <script type="module" src="/js/stimulus.js" defer></script>
 </head>
 <body>
 <nav class="pure-menu pure-menu-horizontal">

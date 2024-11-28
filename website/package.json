@@ -9,7 +9,7 @@
     "build": "node stimulus_build.js && npm run sass",
     "sass": "sass templates/sass:public/css",
     "sass:watch": "sass --watch templates/sass:public/css",
-    "start-dev": "concurrently --raw \"DEBUG=express:* nodemon src/bin/www.js\" \"node stimulus_build.js --watch\" \"npm run sass:watch\""
+    "start-dev": "concurrently --raw \"DEBUG=express:* nodemon src/bin/www.js --watch src --watch templates --verbose\" \"node stimulus_build.js --watch\" \"npm run sass:watch\""
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",

@@ -9,28 +9,45 @@ class SessionManager {
         }
     }
 
-    loggIn(token, userId) {
+    /**
+     *
+     * @param {string} authToken
+     * @param {string} userId
+     */
+    loggIn(authToken, userId) {
         this.ensureSession();
         this.session.userId = userId;
-        this.session.token = token;
+        this.session.authToken = authToken;
     }
 
+    /**
+     *
+     * @return {boolean}
+     */
     isLoggedIn() {
         try {
-            return !!(this.session.userId && this.session.token);
+            return !!(this.session.userId && this.session.authToken);
         } catch {
             return false;
         }
     }
 
+    /**
+     *
+     * @return {string}
+     */
     get userId() {
         this.ensureSession();
         return this.session.userId;
     }
 
-    get token() {
+    /**
+     *
+     * @return {string}
+     */
+    get authToken() {
         this.ensureSession();
-        return this.session.token;
+        return this.session.authToken;
     }
 }
 

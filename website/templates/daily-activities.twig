@@ -2,6 +2,11 @@
 
 {% block title %}Invoice Problem Resolver - time spent reports, time tracking{% endblock %}
 
+
+{% block styles %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/css/daily-activities.css">
+{% endblock %}
 {% block content %}
     <main>
         <!-- Statistics Section -->

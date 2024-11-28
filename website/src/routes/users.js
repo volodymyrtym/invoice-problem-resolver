@@ -1,6 +1,5 @@
 const {Router} = require('express');
-const {ApiClientRequestDTO, ApiValidationError} = require('../utils/api-сlient');
-const { formatSuccess, formatError } = require('../utils/json-response-formatter');
+const {ApiClientRequestDTO} = require('../utils/api-сlient');
 
 module.exports = (diContainer) => {
     const router = Router();
@@ -9,9 +8,8 @@ module.exports = (diContainer) => {
         res.render('login', {title: 'Express'});
     });
 
-    router.post('/login', async (req, res) => {
+    router.post('/login', async (req, res, next) => {
         const {email, password} = req.body;
-        console.log('body:', req.body);
 
         if (!email || !password) {
             return res.status(400).send('Email and password are required');
@@ -24,15 +22,11 @@ module.exports = (diContainer) => {
                 new ApiClientRequestDTO('users/login', { email: email, password: password }, null)
             );
 
-            req.sessionManager.loggIn(response.data.token, response.data.userId);
+            req.sessionManager.loggIn(response.data.authToken, response.data.userId);
 
-            return res.status(200).json(formatSuccess(null));
+            return res.status(204).json(null);
         } catch (error) {
-            if (error instanceof ApiValidationError) {
-                return res.status(error.httpStatus).json(formatError(error.message, error.httpStatus));
-            }
-
-            return res.status(500).json(formatError(error.message, 500,));
+            next(error);
         }
     });
 

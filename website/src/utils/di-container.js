@@ -6,7 +6,6 @@ class DIContainer {
     constructor() {
         if (!DIContainer.instance) {
             this.container = new Container();
-            console.log('process.env.API_BASE_URL: ', process.env.API_BASE_URL)
             this.container.add('ApiClient', () => {
                 return new ApiClient(process.env.API_BASE_URL);
             });

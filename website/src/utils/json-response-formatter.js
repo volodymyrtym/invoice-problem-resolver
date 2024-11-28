@@ -13,18 +13,6 @@ function formatError(error, status) {
     };
 }
 
-/**
- * @param {Object|null} resource
- * @returns {Object}
- */
-function formatSuccess(resource) {
-    return {
-        error: false,
-        resource: resource || {},
-    };
-}
-
 module.exports = {
-    formatSuccess,
     formatError,
 };
