@@ -25,10 +25,10 @@ fix-permissions:
 down: ## down app containers
 	@docker compose down
 
-build: down setup-env compare-env ## build app with cache
+build: setup-env down compare-env ## build app with cache
 	@docker compose build
 
-build-no-cache: down setup-env compare-env  ## build app without cache
+build-no-cache: setup-env down compare-env  ## build app without cache
 	@docker compose build --no-cache
 
 rebuild: build up ## rebuild app with cache
@@ -42,8 +42,8 @@ compare-env:
 
 setup-env:
 	@test -f .env.local || cp .env .env.local
-	@test -f ./backend/.env.local || cp ./backend/.env ./backend/.env.local
-	@test -f ./website/.env.local || cp ./website/.env ./website/.env.local
+	@test -f backend/.env.local || cp backend/.env backend/.env.local
+	@test -f website/.env.local || cp website/.env website/.env.local
 
 # >>> backend
 symfony-console: ## backend. run symfony console

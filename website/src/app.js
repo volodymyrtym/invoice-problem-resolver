@@ -29,8 +29,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(
     session({
-        store: sessionFileStore({
-            path: './sessions',
+        store: new sessionFileStore({
+            path: path.join(__dirname, '/var/sessions'),
+            logFn: console.log,
         }),
         secret: process.env.SESSION_SECRET || 'default-secret',
         resave: false,

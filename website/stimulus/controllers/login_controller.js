@@ -29,9 +29,8 @@ export default class extends Controller {
                 body: JSON.stringify({ email, password }),
             });
 
-            const data = await response.json();
-
             if (!response.ok) {
+                const data = await response.json();
                 showErrorMessage(this.statusMessageTarget, data.detail || "An error occurred");
             } else {
                 showSuccessMessage(this.statusMessageTarget, "Login successful!");
@@ -40,6 +39,7 @@ export default class extends Controller {
                 }, 1000);
             }
         } catch (error) {
+            console.log(error);
             showErrorMessage(this.statusMessageTarget, "A network error occurred. Please try again.");
         } finally {
             this.submitButtonTarget.disabled = false;

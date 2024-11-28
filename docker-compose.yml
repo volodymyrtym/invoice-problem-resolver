@@ -8,6 +8,7 @@ services:
       - ./docker/nginx/:/etc/nginx/conf.d/
       - ./docker/logs/nginx/:/var/log/nginx/
       - ./backend/public/:/var/www/backend/public/:cached
+      - ./website/public/:/var/www/website/public/:cached
     tty: true
     networks:
       - ipr

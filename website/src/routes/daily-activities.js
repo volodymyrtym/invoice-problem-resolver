@@ -15,7 +15,7 @@ module.exports = (diContainer) => {
                 }, req.sessionManager.authToken)
             );
 
-            res.render('daily-activities', response);
+            res.render('daily-activities', {data: response});
         } catch (error) {
             next(error);
         }
