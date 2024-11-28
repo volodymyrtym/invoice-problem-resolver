@@ -45,10 +45,10 @@ setup-env:
 
 # >>> backend
 symfony-console: ## backend. run symfony console
-	@docker compose exec php "php bin/console $(filter-out $@,$(MAKECMDGOALS))"
+	@docker compose exec php php bin/console $(filter-out $@,$(MAKECMDGOALS))
 
 composer: ## backend. run composer
-	@docker compose exec "composer $(filter-out $@,$(MAKECMDGOALS))"
+	@docker compose exec php composer $(filter-out $@,$(MAKECMDGOALS))
 
 doctrine-migrate: ## backend. doctrine migrate
 	@docker compose exec php /bin/bash -c "php bin/console doctrine:migration:migrate --allow-no-migration -n"

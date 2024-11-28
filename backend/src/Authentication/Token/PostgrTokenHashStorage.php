@@ -21,8 +21,9 @@ class PostgrTokenHashStorage implements TokenHashStorageInterface
         $sql = <<<SQL
 INSERT INTO authentication_tokens (hash, user_id, expire_at)
 VALUES (:hash, :userId, :expireAt)
-ON CONFLICT (hash)
+ON CONFLICT (user_id)
 DO UPDATE SET
+    hash = EXCLUDED.hash,
     expire_at = EXCLUDED.expire_at
 SQL;
         $this->entityManager->getConnection()->executeQuery(
