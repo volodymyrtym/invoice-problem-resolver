@@ -42,6 +42,8 @@ compare-env:
 
 setup-env:
 	@test -f .env.local || cp .env .env.local
+	@test -f ./backend/.env.local || cp ./backend/.env ./backend/.env.local
+	@test -f ./website/.env.local || cp ./website/.env ./website/.env.local
 
 # >>> backend
 symfony-console: ## backend. run symfony console

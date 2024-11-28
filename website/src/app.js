@@ -17,18 +17,19 @@ const app = express();
 
 app.set('views', path.join(__dirname, '../templates'));
 app.set('view engine', 'twig');
-if (process.env.APP_ENV === 'development') {
+
+if (process.env.NODE_ENV === 'dev') {
     app.set("view cache", false);
+    app.use(logger('dev'));
 }
 
-app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(
     session({
-        store: new sessionFileStore({
+        store: sessionFileStore({
             path: './sessions',
         }),
         secret: process.env.SESSION_SECRET || 'default-secret',
