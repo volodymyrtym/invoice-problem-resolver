@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace App\DailyActivity\UseCase\GetList;
 
-final readonly class ListResult
+class GroupedByDateActivities
 {
     public array $items;
 
-    public function __construct(public bool $hasPrevPage, public bool $hasNexPage, ListItem ...$items)
-    {
+    public function __construct(
+        public string $date,
+        DailyActivityViewItem ...$items
+    ) {
         $this->items = $items;
     }
 }

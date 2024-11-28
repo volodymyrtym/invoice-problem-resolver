@@ -11,7 +11,7 @@ use ApiPlatform\Metadata\QueryParameter;
 use App\DailyActivity\UseCase\Create\CreateCommand;
 use App\DailyActivity\UseCase\Create\CreateController;
 use App\DailyActivity\UseCase\GetList\GetListController;
-use App\DailyActivity\UseCase\GetList\ListResult;
+use App\DailyActivity\UseCase\GetList\GetListResult;
 
 #[ApiResource(
     uriTemplate: '/daily-activities',
@@ -28,7 +28,7 @@ use App\DailyActivity\UseCase\GetList\ListResult;
             uriTemplate: '/daily-activities',
             status: 200,
             description: 'Get daily activities',
-            output: ListResult::class,
+            output: GetListResult::class,
             provider: GetListController::class,
             parameters: [
                 'page' => new QueryParameter(required: true),

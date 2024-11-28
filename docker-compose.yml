@@ -3,7 +3,7 @@ services:
     image: nginx:latest
     container_name: ${PROJECT_PREFIX}nginx-container
     ports:
-      - "${APP_PORT}:80"
+      - "${NGINX_PORT}:80"
     volumes:
       - ./docker/nginx/:/etc/nginx/conf.d/
       - ./docker/logs/nginx/:/var/log/nginx/
@@ -13,21 +13,20 @@ services:
       - ipr
 
   php:
+    env_file:
+      - ./.env.local
+      - ./backend/.env.local
     build:
       context: ./docker/php
       args:
         HOST_GID: ${HOST_GID}
         HOST_UID: ${HOST_UID}
-        APP_ENV: ${API_ENV}
+        APP_ENV: ${BACKEND_ENV}
         TZ: ${TZ}
     container_name: ${PROJECT_PREFIX}backend-container
     user: "${HOST_UID}:${HOST_GID}"
     environment:
-      - TZ
-      # only for dev
-      - PHP_IDE_CONFIG
-      - XDEBUG_SESSION
-      - APP_ENV=${API_ENV}
+      - TZ=${TZ}
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:
@@ -37,13 +36,15 @@ services:
     tty: true
 
   website:
+    env_file:
+      - ./.env.local
     user: "${HOST_UID}:${HOST_GID}"
     container_name: ${PROJECT_PREFIX}website-container
     build:
       context: ./docker/website
       dockerfile: Dockerfile
       args:
-        - WEBSITE_NODE_ENV
+        - NODE_ENV
         - HOST_GID
         - HOST_UID
     volumes:

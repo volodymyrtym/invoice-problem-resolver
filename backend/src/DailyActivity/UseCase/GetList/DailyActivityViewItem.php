@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\DailyActivity\UseCase\GetList;
 
-final readonly class ListItem
+final readonly class DailyActivityViewItem
 {
     public function __construct(
         public string $id,

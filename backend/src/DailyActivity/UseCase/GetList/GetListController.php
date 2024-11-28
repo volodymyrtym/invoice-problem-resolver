@@ -15,11 +15,11 @@ readonly class GetListController implements ProviderInterface
     private const int MAX_ITEMS_ON_PAGE = 31;
 
     public function __construct(
-        private GetListRepository $repository,
         private PermissionGranterInterface $permissionGranter,
+        private GetListHandler $handler,
     ) {}
 
-    public function provide(Operation $operation, array $uriVariables = [], array $context = []): object|array|null
+    public function provide(Operation $operation, array $uriVariables = [], array $context = []): GetListResult
     {
         $filters = $context['filters'];
         $userId = $filters['userId'];
@@ -30,7 +30,7 @@ readonly class GetListController implements ProviderInterface
 
         $this->permissionGranter->dennyUnlessGranted(DailyActivityPermission::List->value, $userId);
 
-        return $this->repository->getList(
+        return $this->handler->handle(
             new GetListQuery(
                 page: $page,
                 limit: $limit,

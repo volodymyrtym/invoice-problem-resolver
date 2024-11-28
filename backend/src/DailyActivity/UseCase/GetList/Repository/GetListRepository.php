@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
-namespace App\DailyActivity\UseCase\GetList;
+namespace App\DailyActivity\UseCase\GetList\Repository;
 
+use App\DailyActivity\UseCase\GetList\DailyActivityViewItem;
+use App\DailyActivity\UseCase\GetList\GetListQuery;
 use Doctrine\ORM\EntityManagerInterface;
 
 class GetListRepository
@@ -15,7 +17,7 @@ class GetListRepository
         $this->entityManager = $entityManager;
     }
 
-    public function getList(GetListQuery $query): ListResult
+    public function getList(GetListQuery $query): RepositoryQueryResult
     {
         $offset = ($query->page - 1) * $query->limit;
 
@@ -40,7 +42,7 @@ SQL;
 
         $items = [];
         foreach ($arrayResults as $arrayResult) {
-            $items[] = new ListItem(
+            $items[] = new DailyActivityViewItem(
                 id: $arrayResult['id'],
                 type: $arrayResult['type'],
                 startAt: new \DateTimeImmutable($arrayResult['start_at']),
@@ -53,7 +55,7 @@ SQL;
             $hasNextPage = $this->hasNextDate($query->userId, end($items)->startAt);
         }
 
-        return new ListResult($query->page !== 1, $hasNextPage, ...$items);
+        return new RepositoryQueryResult($query->page !== 1, $hasNextPage, ...$items);
     }
 
     private function hasNextDate(string $userId, \DateTimeImmutable $oldestDate): bool
