@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\DailyActivity\Entity;
 
-use App\DailyActivity\Enum\ActivityEnum;
+use App\DailyActivity\Enum\ActivityTypeEnum;
 use App\DailyActivity\ValueObject\DailyActivityDateRange;
 use App\DailyActivity\ValueObject\DailyActivityDescription;
 use App\DailyActivity\ValueObject\DailyActivityId;
@@ -42,7 +42,7 @@ class DailyActivity
     public function __construct(
         DailyActivityId $id,
         UserId $userId,
-        ActivityEnum $type,
+        ActivityTypeEnum $type,
         DailyActivityDateRange $range,
         DailyActivityDescription $description,
         \DateTimeImmutable $createdAt,

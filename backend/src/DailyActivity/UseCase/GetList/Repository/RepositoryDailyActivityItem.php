@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\DailyActivity\UseCase\GetList;
+namespace App\DailyActivity\UseCase\GetList\Repository;
 
-final readonly class DailyActivityViewItem
+final readonly class RepositoryDailyActivityItem
 {
     public function __construct(
         public string $id,

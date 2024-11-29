@@ -6,7 +6,7 @@ namespace App\DailyActivity\UseCase\Create;
 
 use App\Common\Exception\InvalidInputException;
 use App\DailyActivity\Entity\DailyActivity;
-use App\DailyActivity\Enum\ActivityEnum;
+use App\DailyActivity\Enum\ActivityTypeEnum;
 use App\DailyActivity\ValueObject\DailyActivityDateRange;
 use App\DailyActivity\ValueObject\DailyActivityDescription;
 use App\DailyActivity\ValueObject\DailyActivityId;
@@ -26,7 +26,7 @@ final readonly class CreateHandler
      */
     public function handle(CreateCommand $command): string
     {
-        $type = ActivityEnum::tryFrom($command->type) ?? throw InvalidInputException::forField('type', $command->type);
+        $type = ActivityTypeEnum::tryFrom($command->type) ?? throw InvalidInputException::forField('type', $command->type);
         $id = DailyActivityId::create();
         $userId = UserId::fromString($command->userId);
         $range = new DailyActivityDateRange(

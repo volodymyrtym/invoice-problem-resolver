@@ -12,7 +12,7 @@ use Webmozart\Assert\Assert;
 
 readonly class GetListController implements ProviderInterface
 {
-    private const int MAX_ITEMS_ON_PAGE = 31;
+    private const int MAX_ITEMS_ON_PAGE = 50;
 
     public function __construct(
         private PermissionGranterInterface $permissionGranter,
@@ -23,7 +23,7 @@ readonly class GetListController implements ProviderInterface
     {
         $filters = $context['filters'];
         $userId = $filters['userId'];
-        $limit = (int)($filters['limit'] ?? 10);
+        $limit = (int)($filters['limit'] ?? self::MAX_ITEMS_ON_PAGE);
         Assert::range($limit, 1, self::MAX_ITEMS_ON_PAGE, 'Wrong items in page qty');
         $page = (int)($filters['page'] ?? 1);
         Assert::greaterThanEq($page, 1);

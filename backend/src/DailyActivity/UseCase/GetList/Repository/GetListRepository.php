@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\DailyActivity\UseCase\GetList\Repository;
 
-use App\DailyActivity\UseCase\GetList\DailyActivityViewItem;
 use App\DailyActivity\UseCase\GetList\GetListQuery;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -42,7 +41,7 @@ SQL;
 
         $items = [];
         foreach ($arrayResults as $arrayResult) {
-            $items[] = new DailyActivityViewItem(
+            $items[] = new RepositoryDailyActivityItem(
                 id: $arrayResult['id'],
                 type: $arrayResult['type'],
                 startAt: new \DateTimeImmutable($arrayResult['start_at']),
