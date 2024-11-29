@@ -21,7 +21,7 @@ class GetListRepository
         $offset = ($query->page - 1) * $query->limit;
 
         $sql = <<<SQL
-         SELECT id, user_id, type, start_at, end_at, description, DATE(start_at) AS activity_date
+         SELECT id, project as project_name, user_id, type, start_at, end_at, description, DATE(start_at) AS activity_date
     FROM daily_activity_daily_activities
     WHERE user_id = :userId
       AND DATE(start_at) IN (
@@ -44,6 +44,7 @@ SQL;
             $items[] = new RepositoryDailyActivityItem(
                 id: $arrayResult['id'],
                 type: $arrayResult['type'],
+                projectName: $arrayResult['project_name'],
                 startAt: new \DateTimeImmutable($arrayResult['start_at']),
                 endAt: new \DateTimeImmutable($arrayResult['end_at']),
                 description: $arrayResult['description'],

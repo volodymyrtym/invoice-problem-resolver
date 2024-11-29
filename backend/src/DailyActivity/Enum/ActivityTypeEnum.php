@@ -7,6 +7,6 @@ namespace App\DailyActivity\Enum;
 enum ActivityTypeEnum: string
 {
     case Work = 'work';
-    case SeekLeave = 'seek leave';
+    case SeekLeave = 'sickness';
     case Vacation = 'vacation';
 }

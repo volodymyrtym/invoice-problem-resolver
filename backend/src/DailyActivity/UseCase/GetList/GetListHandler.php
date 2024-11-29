@@ -41,6 +41,7 @@ class GetListHandler
             $grouped[$date][] = new DailyActivityItem(
                 id: $item->id,
                 type: $item->type,
+                projectName: $item->projectName,
                 duration: $itemDuration,
                 description: $item->description,
             );

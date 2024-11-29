@@ -9,6 +9,7 @@ final readonly class DailyActivityItem
     public function __construct(
         public string $id,
         public string $type,
+        public null|string $projectName,
         public DurationDTO $duration,
         public string $description,
     ) {}

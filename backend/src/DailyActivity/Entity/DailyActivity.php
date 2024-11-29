@@ -24,6 +24,9 @@ class DailyActivity
     #[ORM\Column(length: 36, nullable: false)]
     private string $userId;
 
+    #[ORM\Column(length: 36, nullable: true)]
+    private string $project;
+
     #[ORM\Column(length: 10, nullable: false)]
     private string $type;
 
