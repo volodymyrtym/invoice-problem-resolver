@@ -16,7 +16,6 @@ class ApiClient {
     /**
      * @param {import('axios').AxiosError} error
      * @throws {ApiValidationError}
-     * @throws {Error}
      */
     handleError(error) {
         if (error.response) {
@@ -29,7 +28,7 @@ class ApiClient {
             }
         }
 
-        throw error;
+        throw new ApiValidationError(error.message, error.status || 500);
     }
 
     /**
@@ -52,6 +51,7 @@ class ApiClient {
      *
      * @param {ApiClientRequestDTO} request
      * @returns {Promise<any>}
+     * @throws {ApiValidationError}
      */
     async put(request) {
         try {
@@ -66,6 +66,7 @@ class ApiClient {
     /**
      * @param {ApiClientRequestDTO} request
      * @returns {Promise<Object | Array>}
+     * @throws {ApiValidationError}
      */
     async post(request) {
         try {
@@ -78,14 +79,17 @@ class ApiClient {
     }
 
     /**
+     *
      * @param {ApiClientRequestDTO} request
-     * @returns {Promise<Object | Array>}
+     * @returns {Promise<Array>}
+     * @throws {ApiValidationError}
      */
     async get(request) {
         try {
             const headers = this.buildHeaders(request);
+            const response = await this.client.get(request.uri, {params: request.data, headers});
 
-            return await this.client.get(request.uri, {params: request.data, headers});
+            return response.data;
         } catch (error) {
             return this.handleError(error);
         }
@@ -94,6 +98,7 @@ class ApiClient {
     /**
      * @param {ApiClientRequestDTO} request
      * @returns {Promise<Object | Array>}
+     * @throws {ApiValidationError}
      */
     async delete(request) {
         try {
@@ -134,8 +139,15 @@ class ApiValidationError extends Error {
     }
 }
 
+const baseUrl = process.env.API_BASE_URL; // Тягнемо базовий URL із змінних оточення
+if (!baseUrl) {
+    throw new Error('API_BASE_URL not set!');
+}
+
+const apiClient = new ApiClient(baseUrl);
+
 module.exports = {
-    ApiClient,
+    apiClient,
     ApiClientRequestDTO,
     ApiValidationError,
 };

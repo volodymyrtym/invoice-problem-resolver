@@ -1,11 +1,10 @@
 const {Router} = require('express');
-const {ApiClientRequestDTO, ApiValidationError} = require('../utils/api-сlient');
+const {apiClient, ApiClientRequestDTO} = require('../utils/api-client');
 
-module.exports = (diContainer) => {
+module.exports = () => {
     const router = Router();
 
     router.get('/', async (req, res, next) => {
-        const apiClient = diContainer.getApiClient();
         try {
             const response = await apiClient.get(
                 new ApiClientRequestDTO('daily-activities', {
@@ -15,6 +14,7 @@ module.exports = (diContainer) => {
                 }, req.sessionManager.authToken)
             );
 
+            console.log(response);
             res.render('daily-activities', {data: response});
         } catch (error) {
             next(error);

@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/purecss@2.1.0/build/pure-min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/siimple-icons/siimple-icons.css" />
     {% block styles %}{% endblock %}
     <title>{% block title %}Invoice Problem Resolver{% endblock %}</title>
     <script type="module" src="/js/stimulus.js" defer></script>
@@ -16,10 +18,16 @@
     </div>
     <ul class="pure-menu-list">
         <li class="pure-menu-item">
-            <a href="#profile" class="pure-menu-link">Profile</a>
+            <a href="#reports" class="pure-menu-link">Activities</a>
+        </li>
+        <li class="pure-menu-item">
+            <a href="#reports" class="pure-menu-link">Invoices</a>
         </li>
         <li class="pure-menu-item">
             <a href="#reports" class="pure-menu-link">Reports</a>
+        </li>
+        <li class="pure-menu-item">
+            <a href="#profile" class="pure-menu-link">Profile</a>
         </li>
         <li class="pure-menu-item">
             <a href="#logout" class="pure-menu-link">Logout</a>

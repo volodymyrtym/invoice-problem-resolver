@@ -64,23 +64,12 @@ nav .pure-menu-list .pure-menu-item .pure-menu-link:hover {
 }
 
 .pagination {
+  text-align: center;
   margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
 }
 
-.pagination button {
-  padding: 8px 15px;
-  border: none;
-  background-color: #85bb85;
-  color: white;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.pagination button:hover {
-  background-color: #76a076;
+.pagination .pure-button {
+  margin: 0 5px;
 }
 
 footer {
@@ -129,7 +118,8 @@ body {
 .button-success,
 .button-error,
 .button-warning,
-.button-secondary {
+.button-secondary,
+.button-primary {
   color: white;
   border-radius: 4px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
@@ -140,6 +130,9 @@ body {
 }
 
 .button-error {
+  background: rgba(202, 60, 60, 0.6);
+}
+.button-error:hover {
   background: rgb(202, 60, 60);
 }
 
@@ -151,12 +144,35 @@ body {
   background: rgb(66, 184, 221);
 }
 
+.button-primary {
+  background-color: #ff7f50;
+  color: white;
+}
+.button-primary:hover {
+  background-color: #ff6347;
+}
+
 main {
   padding-top: 20px;
   padding-bottom: 20px;
   flex: 1;
 }
 
+@media (max-width: 768px) {
+  .hide-on-sm {
+    display: none !important;
+  }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hide-on-md {
+    display: none !important;
+  }
+}
+@media (min-width: 1025px) {
+  .hide-on-lg {
+    display: none !important;
+  }
+}
 main {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -180,13 +196,13 @@ main {
 .activity-container {
   padding-left: 10px;
 }
-.activity-container .add-activity-button {
+.activity-container .add-activity-button-container button {
   background-color: #ff7f50;
   color: white;
   font-size: 16px;
   font-weight: bold;
 }
-.activity-container .add-activity-button:hover {
+.activity-container .add-activity-button-container button:hover {
   background-color: #ff6347;
 }
 .activity-container .activity-group-header .date {
@@ -198,7 +214,6 @@ main {
   padding: 10px;
   border-radius: 8px;
   color: #555;
-  margin-bottom: 15px;
 }
 .activity-container .activity-group {
   margin-bottom: 20px;
@@ -226,25 +241,23 @@ main {
   padding-right: 4px;
 }
 .activity-container .activity-item:hover {
-  background-color: #e0f7fa;
-  transform: translateY(-2px);
+  background-color: rgba(210, 228, 237, 0.3);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
-.activity-container .activity-type {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  font-weight: bold;
+.activity-container .project {
+  color: grey;
 }
-.activity-container .activity-type.work {
-  color: #228b22;
+.activity-container .activity-type.activity-type-work i {
+  color: rgba(18, 87, 18, 0.7490196078);
 }
-.activity-container .activity-type.vacation {
+.activity-container .activity-type.activity-type-vacation i {
   color: #007bff;
 }
-.activity-container .activity-type.sick-leave {
-  color: #dc3545;
+.activity-container .activity-type.activity-type-sickness i {
+  color: rgba(153, 26, 38, 0.6392156863);
+}
+.activity-container .activity-type i {
+  font-size: 1.2em;
 }
 .activity-container .actions span {
   font-size: 16px;

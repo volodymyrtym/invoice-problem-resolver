@@ -32,7 +32,8 @@ body {
 .button-success,
 .button-error,
 .button-warning,
-.button-secondary {
+.button-secondary,
+.button-primary{
   color: white;
   border-radius: 4px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
@@ -43,7 +44,10 @@ body {
 }
 
 .button-error {
-  background: rgb(202, 60, 60);
+  background: rgb(202, 60, 60, 0.6);
+  &:hover {
+    background: rgb(202, 60, 60, 1);
+  }
 }
 
 .button-warning {
@@ -54,8 +58,35 @@ body {
   background: rgb(66, 184, 221);
 }
 
+.button-primary{
+  background-color: #ff7f50;
+  color: white;
+  &:hover {
+    background-color: #ff6347;
+  }
+}
+
 main {
   padding-top: 20px;
   padding-bottom: 20px;
   flex: 1;
+}
+
+@media (max-width: 768px) {
+  .hide-on-sm {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hide-on-md {
+    display: none !important;
+  }
+}
+
+
+@media (min-width: 1025px) {
+  .hide-on-lg {
+    display: none !important;
+  }
 }

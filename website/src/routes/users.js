@@ -1,7 +1,7 @@
 const {Router} = require('express');
-const {ApiClientRequestDTO} = require('../utils/api-сlient');
+const {apiClient, ApiClientRequestDTO} = require('../utils/api-client');
 
-module.exports = (diContainer) => {
+module.exports = () => {
     const router = Router();
 
     router.get('/login', (req, res, next) => {
@@ -14,8 +14,6 @@ module.exports = (diContainer) => {
         if (!email || !password) {
             return res.status(400).send('Email and password are required');
         }
-
-        const apiClient = diContainer.getApiClient();
 
         try {
             const response = await apiClient.put(

@@ -25,17 +25,19 @@ main {
 .activity-container {
   padding-left: 10px;
 
+  .add-activity-button-container {
+    button {
+      background-color: #ff7f50;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
 
-  .add-activity-button {
-    background-color: #ff7f50;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-
-    &:hover {
-      background-color: #ff6347;
+      &:hover {
+        background-color: #ff6347;
+      }
     }
   }
+
 
   .activity-group-header {
     .date {
@@ -49,7 +51,6 @@ main {
     padding: 10px;
     border-radius: 8px;
     color: #555;
-    margin-bottom: 15px;
   }
 
   .activity-group {
@@ -82,29 +83,29 @@ main {
     }
 
     &:hover {
-      background-color: #e0f7fa;
-      transform: translateY(-2px);
+      background-color: rgb(210, 228, 237, 0.3);
+
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
   }
-
+  .project{
+    color: grey;
+  }
   .activity-type {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    font-weight: bold;
-
-    &.work {
-      color: #228b22;
+    &.activity-type-work i{
+      color: #125712bf;
     }
 
-    &.vacation {
+    &.activity-type-vacation i{
       color: #007bff;
     }
 
-    &.sick-leave {
-      color: #dc3545;
+    &.activity-type-sickness i{
+      color: #991a26a3;
+    }
+
+    i{
+      font-size: 1.2em;
     }
   }
 
