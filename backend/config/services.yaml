@@ -23,8 +23,15 @@ services:
             - '../src/**/*Query'
             - '../src/Kernel.php'
 
+    #> infra
+    App\Common\Twig\FileManifestExtension:
+        arguments: ['%kernel.project_dir%/public/build/manifest.json']
+        tags:
+            - { name: twig.extension }
+    #< infra
+
     # > authentication
-    App\Authentication\Token\UserTokenAuthenticator:
+    App\Authentication\ApiTokenAuthenticator:
         arguments:
             $secretSolt: '%env(default::AUTH_SOLT)%'
     # < authentication
@@ -40,4 +47,8 @@ services:
     App\DailyActivity\UseCase\Create\CreateHandler:
         arguments:
             $maxPerDay: '%env(default::MAX_DAILY_ACTIVITIES_PER_DAY)%'
-    # <daily activity
+    # < daily activity
+
+    # > user
+
+    # < user

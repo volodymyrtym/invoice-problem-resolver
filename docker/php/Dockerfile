@@ -47,6 +47,10 @@ RUN if [ $APP_ENV = "dev" ]; then \
     echo "xdebug.mode=debug,develop" >> /usr/local/etc/php/conf.d/xdebug.ini;\
     echo "xdebug.log=/var/log/xdebug.log" >> /usr/local/etc/php/conf.d/xdebug.ini;\
     docker-php-ext-enable xdebug;\
+    # Disable Opcache in dev
+    echo "opcache.enable=0" > /usr/local/etc/php/conf.d/opcache.ini; \
+    echo "opcache.validate_timestamps=1" >> /usr/local/etc/php/conf.d/opcache.ini; \
+    echo "opcache.revalidate_freq=0" >> /usr/local/etc/php/conf.d/opcache.ini; \
 fi
 #
 

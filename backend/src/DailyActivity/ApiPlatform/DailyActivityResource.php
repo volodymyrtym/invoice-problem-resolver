@@ -8,9 +8,10 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\QueryParameter;
+use App\DailyActivity\UseCase\Create\ApiCreateRequest;
 use App\DailyActivity\UseCase\Create\CreateCommand;
-use App\DailyActivity\UseCase\Create\CreateController;
-use App\DailyActivity\UseCase\GetList\GetListController;
+use App\DailyActivity\UseCase\Create\ApiCreateController;
+use App\DailyActivity\UseCase\GetList\ApiGetListController;
 use App\DailyActivity\UseCase\GetList\GetListResult;
 
 #[ApiResource(
@@ -20,16 +21,16 @@ use App\DailyActivity\UseCase\GetList\GetListResult;
         new Post(
             status: 201,
             description: 'Creates activity',
-            input: CreateCommand::class,
+            input: ApiCreateRequest::class,
             output: null,
-            processor: CreateController::class,
+            processor: ApiCreateController::class,
         ),
         new Get(
             uriTemplate: '/daily-activities',
             status: 200,
             description: 'Get daily activities',
             output: GetListResult::class,
-            provider: GetListController::class,
+            provider: ApiGetListController::class,
             parameters: [
                 'page' => new QueryParameter(required: true),
                 'limit' => new QueryParameter(required: true),

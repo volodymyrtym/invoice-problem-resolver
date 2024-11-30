@@ -10,7 +10,7 @@ use ApiPlatform\Metadata\Put;
 use App\User\UseCase\CreateUser\CreateCommand;
 use App\User\UseCase\CreateUser\CreateController;
 use App\User\UseCase\Login\LoginCommand;
-use App\User\UseCase\Login\LoginController;
+use App\User\UseCase\Login\ApiLoginController;
 use App\User\UseCase\Login\LoginResult;
 
 #[ApiResource(
@@ -30,7 +30,7 @@ use App\User\UseCase\Login\LoginResult;
             description: 'Login user',
             input: LoginCommand::class,
             output: LoginResult::class,
-            processor: LoginController::class,
+            processor: ApiLoginController::class,
         ),
     ],
 )]

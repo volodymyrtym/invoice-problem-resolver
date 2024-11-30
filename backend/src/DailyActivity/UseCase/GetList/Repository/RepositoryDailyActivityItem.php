@@ -8,7 +8,6 @@ final readonly class RepositoryDailyActivityItem
 {
     public function __construct(
         public string $id,
-        public string $type,
         public ?string $projectName,
         public \DateTimeImmutable $startAt,
         public \DateTimeImmutable $endAt,

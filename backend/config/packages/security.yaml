@@ -4,30 +4,36 @@ security:
     providers:
         app_user_provider:
             id: App\Authentication\User\SecurityUserProvider
+
     firewalls:
         dev:
-            pattern: ^/(_(profiler|wdt)|api-platform)
+            pattern: ^/(_(profiler|wdt)|api/_docs)
             security: false
         public:
-            pattern: ^/(users/login|users/register)
+            pattern: ^/(login|login_check|register|$)
+            security: false
+        public_api:
+            pattern: ^/(api/users/login|api/users/register)
             stateless: true
             security: false
-        main:
-            stateless: true
+        api:
+            pattern: ^/api
+            stateless: false
+            lazy: true
+            context: session #for the seek of frontend and mobile app
             custom_authenticators:
-                - App\AuthenticationContract\UserAuthenticatorInterface
+                - App\Authentication\ApiTokenAuthenticator
+                - App\Authentication\SiteAuthenticator #for the seek of frontend and mobile app
+        site:
+            pattern: ^/
+            lazy: true
+            context: session
+            #user_checker: App\Security\UserChecker add to project
+            logout:
+                path: /logout
+                target: /
+            custom_authenticators:
+                - App\Authentication\SiteAuthenticator
     access_control:
         - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
 
-when@test:
-    security:
-        password_hashers:
-            # By default, password hashers are resource intensive and take time. This is
-            # important to generate secure password hashes. In tests however, secure hashes
-            # are not important, waste resources and increase test times. The following
-            # reduces the work factor to the lowest possible values.
-            Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
-                algorithm: auto
-                cost: 4 # Lowest possible value for bcrypt
-                time_cost: 3 # Lowest possible value for argon
-                memory_cost: 10 # Lowest possible value for argon

@@ -26,7 +26,6 @@ final readonly class CreateHandler
      */
     public function handle(CreateCommand $command): string
     {
-        $type = ActivityTypeEnum::tryFrom($command->type) ?? throw InvalidInputException::forField('type', $command->type);
         $id = DailyActivityId::create();
         $userId = UserId::fromString($command->userId);
         $range = new DailyActivityDateRange(
@@ -42,7 +41,6 @@ final readonly class CreateHandler
             new DailyActivity(
                 id: $id,
                 userId: UserId::fromString($command->userId),
-                type: $type,
                 range: $range,
                 description: new DailyActivityDescription($command->description),
                 createdAt: $this->clock->now(),

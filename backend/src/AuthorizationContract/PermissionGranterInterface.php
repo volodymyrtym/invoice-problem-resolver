@@ -6,5 +6,5 @@ namespace App\AuthorizationContract;
 
 interface PermissionGranterInterface
 {
-    public function dennyUnlessGranted(string $permission, string $userId, string|null $subject = null): void;
+    public function dennyUnlessGranted(string $permission, string|null $subject = null): void;
 }

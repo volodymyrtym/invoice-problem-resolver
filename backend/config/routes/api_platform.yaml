@@ -1,8 +1,8 @@
 api_platform:
     resource: .
     type: api_platform
-    prefix: /
+    prefix: /api
 
 api_doc:
-    path: /api-platform
+    path: /api/_docs
     controller: api_platform.swagger.action.ui

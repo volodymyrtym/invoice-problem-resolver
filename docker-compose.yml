@@ -8,7 +8,6 @@ services:
       - ./docker/nginx/:/etc/nginx/conf.d/
       - ./docker/logs/nginx/:/var/log/nginx/
       - ./backend/public/:/var/www/backend/public/:cached
-      - ./website/public/:/var/www/website/public/:cached
     tty: true
     networks:
       - ipr
@@ -48,12 +47,11 @@ services:
         - NODE_ENV
         - HOST_GID
         - HOST_UID
+    environment:
+      - NODE_ENV=${BACKEND_ENV}
     volumes:
-      - ./website/:/var/www/website
-    ports:
-      - "${WEBSITE_PORT}:3000"
-    networks:
-      - ipr
+      - ./backend/:/var/www/website/:cached
+      - ./docker/logs/node/:/home/node/.npm/
     tty: true
 
   database:

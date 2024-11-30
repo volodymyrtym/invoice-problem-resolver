@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\User\UseCase\Login;
 
-use App\AuthenticationContract\UserAuthenticatorInterface;
+use App\AuthenticationContract\UserApiAuthenticatorInterface;
 use App\Common\Exception\InvalidInputException;
 use App\User\Repository\UserRepositoryInterface;
 use App\User\ValueObject\UserEmail;
@@ -15,13 +15,13 @@ final readonly class LoginHandler
     public function __construct(
         private UserRepositoryInterface $repository,
         private ClockInterface $clock,
-        private UserAuthenticatorInterface $authenticator,
+        private UserApiAuthenticatorInterface $authenticator,
     ) {}
 
     /**
      * @throws InvalidInputException
      */
-    public function handle(LoginCommand $command): LoginResult
+    public function handle(LoginCommand $command): string
     {
         $user = $this->repository->findByEmail(new UserEmail($command->email));
         if (!$user) {
@@ -33,9 +33,9 @@ final readonly class LoginHandler
         }
 
         $user->logged($this->clock->now());
-        $authToken = $this->authenticator->allowAuthenticate($user->getId()->toString());
+
         $this->repository->save($user);
 
-        return new LoginResult(userId: $user->getId()->toString(), authToken: $authToken);
+        return $user->getId()->toString();
     }
 }

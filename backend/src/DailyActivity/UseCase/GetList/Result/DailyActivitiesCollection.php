@@ -11,7 +11,7 @@ class DailyActivitiesCollection
     public function __construct(
         public string $date,
         public DurationDTO $duration,
-        DailyActivityItem ...$items
+        DailyActivityItem ...$items,
     ) {
         $this->items = $items;
     }

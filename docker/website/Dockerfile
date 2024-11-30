@@ -15,14 +15,14 @@ RUN if [ "$NODE_ENV" = "prod" ]; then \
       echo "Running in production mode" && \
       COPY ../../package*.json ./ && \
       npm install --production && \
-      COPY ../../website . && \
+      COPY ../../backend . && \
       echo "Production dependencies installed and files copied"; \
     fi
 
-
+RUN mkdir -p /home/node/.npm && chown -R node:node /home/node
 # Kept set user last layer
-RUN usermod -u ${HOST_UID} www-data;\
-    groupmod -g ${HOST_GID} www-data;\
+RUN usermod -u ${HOST_UID} node;\
+    groupmod -g ${HOST_GID} node;\
     chown -R node:node /var/www;
 
 USER node

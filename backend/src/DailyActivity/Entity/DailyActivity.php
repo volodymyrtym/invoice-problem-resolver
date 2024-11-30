@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity]
 #[ORM\Table(name: 'daily_activity_daily_activities')]
 #[ORM\Index(name: 'user_start_date_idx', columns: ['user_id', 'start_at'])]
-#[ORM\Index(name: 'user_created_at', columns: ['user_id', 'created_at'])]
+#[ORM\Index(name: 'user_idx', columns: ['user_id'])]
 class DailyActivity
 {
     #[ORM\Id]
@@ -26,9 +26,6 @@ class DailyActivity
 
     #[ORM\Column(length: 36, nullable: true)]
     private string $project;
-
-    #[ORM\Column(length: 10, nullable: false)]
-    private string $type;
 
     #[ORM\Column(nullable: false)]
     private \DateTimeImmutable $startAt;
@@ -45,23 +42,16 @@ class DailyActivity
     public function __construct(
         DailyActivityId $id,
         UserId $userId,
-        ActivityTypeEnum $type,
         DailyActivityDateRange $range,
         DailyActivityDescription $description,
         \DateTimeImmutable $createdAt,
     ) {
         $this->id = $id->toString();
         $this->userId = $userId->toString();
-        $this->type = $type->value;
         $this->startAt = $range->start;
         $this->endAt = $range->end;
         $this->description = $description->toString();
         $this->createdAt = $createdAt;
-    }
-
-    public function getType(): string
-    {
-        return $this->type;
     }
 
     public function getStartAt(): \DateTimeImmutable
