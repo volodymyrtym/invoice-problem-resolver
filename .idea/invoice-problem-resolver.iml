@@ -100,6 +100,7 @@
       <excludeFolder url="file://$MODULE_DIR$/backend/var" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor" />
     </content>
+    <content url="file://$MODULE_DIR$/website/node_modules" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>

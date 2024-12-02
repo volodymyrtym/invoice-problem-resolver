@@ -4,11 +4,21 @@ declare(strict_types=1);
 
 namespace App\Authorization;
 
-use App\Authorization\Enum\PermissionDomainsEnum;
+use App\AuthenticationContract\RoleEnum;
+use App\AuthorizationContract\PermissionGranterInterface;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
-interface PermissionGranter
+final readonly class PermissionGranter implements PermissionGranterInterface
 {
-    public function grant(PermissionDomainsEnum $domain, string $permission, string $subjectId, string $userId): void;
+    public function __construct(
+        private AuthorizationCheckerInterface $authorizationChecker,
+    ) {}
 
-    public function grantAll(PermissionDomainsEnum $domain, string $subjectId, string $userId): void;
+    public function dennyUnlessGranted(string $permission, string|null $subject = null): void
+    {
+        if (!$this->authorizationChecker->isGranted(RoleEnum::User->value)) { //voter concept if needed
+            throw new AccessDeniedHttpException();
+        }
+    }
 }

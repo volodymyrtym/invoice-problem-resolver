@@ -1,0 +1,8 @@
+node_modules
+*.css.map
+public/**/*.js.map
+dist
+../backend/public/js/stimulus.js
+../backend/public/css
+.env.local
+src/var

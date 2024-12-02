@@ -1,0 +1,19 @@
+{
+  "name": "website",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "node esbuild.config.js",
+    "watch": "node esbuild.config.js --watch",
+    "build-prod": "NODE_ENV=production node esbuild.config.js"
+  },
+  "devDependencies": {
+    "@hotwired/stimulus": "^3.2.1",
+    "esbuild": "^0.24.0",
+    "esbuild-plugin-sass": "^1.0.0",
+    "esbuild-plugin-vue3": "^0.4.2"
+  },
+  "dependencies": {
+    "vue": "^3.5.13"
+  }
+}

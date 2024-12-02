@@ -16,10 +16,39 @@ services:
     App\:
         resource: '../src/'
         exclude:
-    #        - '../src/DependencyInjection/'
-    #        - '../src/Entity/'
+            - '../src/**/*DTO'
+            - '../src/**/*Exception'
+            - '../src/**/*Enum'
+            - '../src/**/*Command'
+            - '../src/**/*Query'
             - '../src/Kernel.php'
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    #> infra
+    App\Common\Twig\FileManifestExtension:
+        arguments: ['%kernel.project_dir%/public/build/manifest.json']
+        tags:
+            - { name: twig.extension }
+    #< infra
 
+    # > authentication
+    App\Authentication\ApiTokenAuthenticator:
+        arguments:
+            $secretSolt: '%env(default::AUTH_SOLT)%'
+    # < authentication
+
+
+    api_platform.swagger.action.ui:
+        class: ApiPlatform\Symfony\Bundle\SwaggerUi\SwaggerUiAction
+        public: true
+        arguments:
+            $swaggerUiContext: '@api_platform.swagger_ui.context'
+
+    # > daily activity
+    App\DailyActivity\UseCase\Create\CreateHandler:
+        arguments:
+            $maxPerDay: '%env(default::MAX_DAILY_ACTIVITIES_PER_DAY)%'
+    # < daily activity
+
+    # > user
+
+    # < user

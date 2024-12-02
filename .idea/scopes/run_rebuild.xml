@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="run rebuild" pattern="file[invoice-problem-resolver]:backend/templates//*" />
+</component>

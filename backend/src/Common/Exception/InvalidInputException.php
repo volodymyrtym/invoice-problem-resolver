@@ -6,8 +6,8 @@ namespace App\Common\Exception;
 
 class InvalidInputException extends \Exception
 {
-    public static function forField(string $field): self
+    public static function forField(string $field, string $value): self
     {
-        return new self('Invalid field value'. $field);
+        return new self(sprintf('Invalid field `%s` with value `%s`,', $field, $value));
     }
 }

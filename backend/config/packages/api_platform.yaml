@@ -2,6 +2,34 @@ api_platform:
     title: Hello API Platform
     version: 1.0.0
     defaults:
-        stateless: true
+        stateless: false
         cache_headers:
             vary: ['Content-Type', 'Authorization', 'Origin']
+        route_prefix: '/'
+    enable_swagger_ui: true
+    enable_swagger: true
+    doctrine:
+        # To enable or disable Doctrine ORM support.
+        enabled: false
+
+    mapping:
+        paths:
+            - '%kernel.project_dir%/src/DailyActivity/ApiPlatform'
+            - '%kernel.project_dir%/src/User/ApiPlatform'
+
+    formats:
+        json:
+            mime_types: [ 'application/json' ]
+        jsonld:
+            mime_types: [ 'application/ld+json' ]
+
+    swagger:
+        api_keys:
+            - key: 'auth-token'
+              name: 'auth-token'
+              type: 'header'
+        swagger_ui_extra_configuration:
+            persistAuthorization: true
+    exception_to_status:
+        App\Common\Exception\InvalidInputException: 420
+

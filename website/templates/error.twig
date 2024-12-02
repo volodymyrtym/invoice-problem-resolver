@@ -1,0 +1,7 @@
+{% extends '../../backend/templates/layouts' %}
+
+{% block content %}
+  <h1>OOOOPS! {{message}}</h1>
+  <h2>{{error.status}}</h2>
+  <pre>{{error.stack}}</pre>
+{% endblock %}
